@@ -1,0 +1,14 @@
+{
+  "name": "catering-management",
+  "version": "0.0.0",
+  "authors": [
+    "achieve@thinkbit.com.ph"
+  ],
+  "license": "MIT",
+  "homepage": "http://thinkbit.com.ph",
+  "private": true,
+  "dependencies": {
+    "bootswatch": "3.1.1+1",
+    "fontawesome": "4.1.0"
+  }
+}
