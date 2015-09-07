@@ -106,7 +106,7 @@
             </div>
             <div class="modal-body">
                 <div class="te">
-                     {{Form::open(['action' => 'Catering\ReservationsController@changeStatus'])}}
+                     {{Form::open(['action' => 'catering\ReservationsController@changeStatus'])}}
                     
                     {{Form::hidden('id',$reservation->id,['class' => 'form-control','required'])}}
 

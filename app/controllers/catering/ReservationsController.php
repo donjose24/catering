@@ -369,16 +369,16 @@ class ReservationsController extends \BaseController {
 
     public function attachMessageCancellation($id)
     {
+		
         $validator = Validator::make(Input::all(),
             array(
-                'image' => 'required',
+                'image' => 'required|mimes:doc,docx',
             )
         );
 
         if($validator->fails()){
-            return Redirect::back()->withErrors($validator->messages());
+            return Redirect::to('reservation/message/' . $id )->withErrors($validator->messages());
         }
-
         $image = Input::file('image');
         $name = Input::file('image')->getClientOriginalName();
 
