@@ -1,0 +1,218 @@
+---
+vagrantfile-local:
+    vm:
+        box: puphpet/centos65-x64
+        box_url: puphpet/centos65-x64
+        hostname: null
+        memory: '512'
+        chosen_provider: virtualbox
+        network:
+            private_network: 192.168.33.10
+            forwarded_port:
+                TMjqCZtwTVN9:
+                    host: '8080'
+                    guest: '80'
+        provider:
+            virtualbox:
+                modifyvm:
+                    natdnshostresolver1: on
+                setextradata:
+                    VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root: 1
+            vmware:
+                numvcpus: 1
+            parallels:
+                cpus: 1
+        provision:
+            puppet:
+                manifests_path: puphpet/puppet
+                manifest_file: manifest.pp
+                module_path: puphpet/puppet/modules
+                options:
+                    - '--verbose'
+                    - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
+                    - '--parser future'
+        synced_folder:
+            G7LmAIk7pVGu:
+                source: ./
+                target: /var/www/html
+                nfs: 'false'
+        usable_port_range: 2200..2250
+    ssh:
+        host: null
+        port: null
+        private_key_path: null
+        username: vagrant
+        guest_port: null
+        keep_alive: true
+        forward_agent: false
+        forward_x11: false
+        shell: 'bash -l'
+    vagrant:
+        host: detect
+server:
+    packages: {  }
+    dot_files:
+        -
+            bash_aliases: null
+    _prevent_empty: ''
+mailcatcher:
+    install: 0
+    settings:
+        smtp_ip: 0.0.0.0
+        smtp_port: 1025
+        http_ip: 0.0.0.0
+        http_port: '1080'
+        mailcatcher_path: /usr/local/bin
+        log_path: /var/log/mailcatcher/mailcatcher.log
+firewall:
+    install: '1'
+    rules: null
+apache:
+    install: '1'
+    settings:
+        user: www-data
+        group: www-data
+        default_vhost: false
+        manage_user: false
+        manage_group: false
+        sendfile: 0
+    modules:
+        - php
+        - rewrite
+    vhosts:
+        Q26fvV6Rh41G:
+            servername: asia9
+            serveraliases:
+                - localhost
+            docroot: /var/www/html/public
+            port: '80'
+            override:
+                - All
+            options:
+                - Indexes
+                - FollowSymLinks
+                - MultiViews
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
+    mod_pagespeed: 0
+    mod_spdy: 0
+nginx:
+    install: 0
+    vhosts:
+        tYqdJaiTQEsS:
+            server_name: awesome.dev
+            server_aliases:
+                - www.awesome.dev
+            www_root: /var/www/awesome.dev
+            listen_port: '80'
+            index_files:
+                - index.html
+                - index.htm
+                - index.php
+            envvars:
+                - 'APP_ENV dev'
+            ssl_cert: ''
+            ssl_key: ''
+php:
+    install: '1'
+    version: '54'
+    composer: '1'
+    composer_home: ''
+    modules:
+        php:
+            - cli
+            - mcrypt
+            - mysqlnd
+        pear: {  }
+        pecl:
+            - pecl_http
+    ini:
+        display_errors: On
+        error_reporting: '-1'
+        session.save_path: /var/lib/php/session
+        asp_tags: Off
+        file_uploads: On
+        max_execution_time: '180'
+        max_input_time: '180'
+        memory_limit: 256M
+        upload_max_filesize: 256M
+    timezone: UTC
+xdebug:
+    install: 0
+    settings:
+        xdebug.default_enable: '1'
+        xdebug.remote_autostart: '0'
+        xdebug.remote_connect_back: '1'
+        xdebug.remote_enable: '1'
+        xdebug.remote_handler: dbgp
+        xdebug.remote_port: '9000'
+drush:
+    install: 0
+    settings:
+        drush.tag_branch: 6.x
+mysql:
+    install: 0
+    root_password: '123'
+    adminer: 0
+    databases:
+        qwUynyaW7LhW:
+            grant:
+                - ALL
+            name: dbname
+            host: localhost
+            user: dbuser
+            password: '123'
+            sql_file: ''
+postgresql:
+    install: 0
+    settings:
+        root_password: '123'
+        user_group: postgres
+        encoding: UTF8
+        version: '9.3'
+    databases: {  }
+    adminer: 0
+mariadb:
+    install: '1'
+    root_password: root
+    adminer: 0
+    databases:
+        aWo1upaMfV94:
+            grant:
+                - ALL
+            name: thinkbit_inventory
+            host: localhost
+            user: thinkbit_dev
+            password: thinkbit_dev
+            sql_file: ''
+    version: '5.5'
+mongodb:
+    install: 0
+    settings:
+        auth: 1
+        port: '27017'
+    databases: {  }
+redis:
+    install: 0
+    settings:
+        conf_port: '6379'
+beanstalkd:
+    install: 0
+    settings:
+        listenaddress: 0.0.0.0
+        listenport: '13000'
+        maxjobsize: '65535'
+        maxconnections: '1024'
+        binlogdir: /var/lib/beanstalkd/binlog
+        binlogfsync: null
+        binlogsize: '10485760'
+    beanstalk_console: 0
+    binlogdir: /var/lib/beanstalkd/binlog
+rabbitmq:
+    install: 0
+    settings:
+        port: '5672'
+
