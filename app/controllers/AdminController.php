@@ -330,7 +330,7 @@ class AdminController extends \BaseController {
             App::abort(404);
         }
 
-            $reservation->middle_name = $reservation->middle_name + Input::get('amount');
+            $reservation->amount_paid = $reservation->amount_paid + Input::get('amount');
             $reservation->save();
 
 
@@ -466,7 +466,8 @@ class AdminController extends \BaseController {
         $reservation = Item::find(Input::get('item_id_get'));
         $reservation->total_quantity = $reservation->total_quantity + (Input::get('quantity'));
         $reservation->save();
-        return Redirect::back();
+		
+		return Redirect::back();
     }
 
     public function brokenAdditionalItem()
