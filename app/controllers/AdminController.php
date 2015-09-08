@@ -1727,8 +1727,6 @@ $total = 0;
     {
 
         $reservation = Reservation::find(Input::get('id'));
-        $reservation->menus()->detach();
-        $reservation->items()->detach();
         $date1 = new DateTime($reservation->reservation_start);
         $date2 = new DateTime($reservation->reservation_end);
         $diff = $date2->diff($date1)->format("%a");
