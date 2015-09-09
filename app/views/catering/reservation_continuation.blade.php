@@ -7,9 +7,9 @@ $('body').on('hidden.bs.modal', '.modal', function () {
 });
 </script>
 
-{{ Form::open(['action' => ['catering\ReservationsController@attachMenu'],
-         'role' => 'form' , 'id' => 'form']) }}
+{{ Form::open(['action' => ['catering\ReservationsController@attachMenu'], 'role' => 'form' , 'id' => 'form']) }}
 {{ Form::hidden('id', $id)  }}
+<div class='col-md-8 col-md-offset-2'>
 <div class="panel panel-default">
                  <div class="panel-heading">
                     Equipment
@@ -23,7 +23,6 @@ $('body').on('hidden.bs.modal', '.modal', function () {
                         <input type="hidden" name="pricey[]" value="{{$items->average_price}}">
                         <td><input type="hidden" name="model[]" value = "{{$items->model_number}}" class="form-control" disabled>
                             <a data-toggle="modal" href="http://localhost:8000/equip/getOne/{{$items->id}}" data-target="#menuModal">{{$items->model_number}}</a>
-
                         </td>
                         <td>{{Form::number('quantity[]',0,['class' => 'form-control', 'placeholder' => 'Qty'])}}</td>
                     </tr>
@@ -196,6 +195,7 @@ $('body').on('hidden.bs.modal', '.modal', function () {
       </div>
 
     </div>
+</div>
 
 {{Form::close()}}
 

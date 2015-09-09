@@ -109,7 +109,19 @@ class AdminController extends \BaseController {
         $fpdf->Output();
         exit;
     }
+    public function information(){
+        $informations = Information::all();
+        return View::make('admin.information')->with(compact('informations'));
+    }
+    public function editInformation($id, $value){
+        if($information = Information::find($id)){
+            $information->value = $value;
+            if($information->save())return Redirect::back()->with('flash_message','Information was successfully updated');
+            else return Redirect::back()->withErrors('Error. Information not saved.');
 
+        }
+        return Redirect::back()->withErrors('Information not found!');
+    }
     public function MenuTable($header, $data, $reservation, $fpdf)
     {
         // Colors, line width and bold font
