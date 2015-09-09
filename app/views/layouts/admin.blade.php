@@ -249,15 +249,12 @@ font-size: 16px;">  <a href="/" class="btn btn-danger square-btn-adjust">Logout<
         <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('bower_components/datepicker/js/bootstrap-datepicker.js') }}"></script>
         <script src="{{asset('addasset/js/sweetalert.min.js')}}"></script>
-        <script type="text/javascript">
-         @if($errors)
+        @if($errors)
+        
         <script type="text/javascript">
         $(document).ready(function(){
             var errors = '{{$errors->first()}}';
             if(errors.length > 0)swal("Error",errors ,"error");
-
-           
-            
         });
         </script>
         @endif

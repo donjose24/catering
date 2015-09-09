@@ -116,7 +116,7 @@ class AdminController extends \BaseController {
     }
     public function editInformation($id, $value){
         if($information = Information::find($id)){
-            $information->value = $value;
+            $information->value = str_replace('-', '/', $value);
             if($information->save())return Redirect::back()->with('flash_message','Information was successfully updated');
             else return Redirect::back()->withErrors('Error. Information not saved.');
 

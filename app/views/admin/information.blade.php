@@ -63,7 +63,7 @@
 				   	if (inputValue === "") {     
 				   		swal.showInputError("You need to write something!");     return false   
 				   	} 
-
+				   inputValue=	inputValue.replace(/\//gi, "-");
 				   	window.location.assign(url + inputValue);
 
 				   	swal("Nice!", "You wrote: " + inputValue, "success"); 

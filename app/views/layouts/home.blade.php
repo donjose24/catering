@@ -23,6 +23,8 @@
 
         {{HTML::style('addasset/css/sweetalert.css')}}
         <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+       <script src="{{asset('homepage/js/jquery.sequence-min.js')}}"></script>
+
 
         <script>
             function switchDay(day, numberDays)
@@ -248,18 +250,16 @@
 
         <!-- Javascripts -->
 
-        <script src="{{asset('homepage/js/jquery.sequence-min.js')}}"></script>
+        
 	    <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
 	    <script src="{{asset('homepage/js/jquery.fitvids.js')}}"></script>
 	    <script src="{{asset('homepage/js/jquery.bxslider.js')}}"></script>
 	    <script src="{{asset('homepage/js/template.js')}}"></script>
         <script src="{{asset('addasset/js/sweetalert.min.js')}}"></script>
         <script src="{{asset('homepage/js/main-menu.js')}}"></script>
-        
-
         <script src="{{asset('homepage/js/bootstrap.min.js')}}" type="text/javascript"></script>
+         @yield('scripts')
         
-       
         @if($errors)
         <script type="text/javascript">
         $(document).ready(function(){
@@ -278,7 +278,7 @@
 
 
 
-    @yield('scripts')
-
+   
+       
     </body>
 </html>
