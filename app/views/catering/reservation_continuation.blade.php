@@ -7,14 +7,11 @@ $('body').on('hidden.bs.modal', '.modal', function () {
 });
 </script>
 
-<<<<<<< HEAD
+
 {{ Form::open(['action' => ['catering\ReservationsController@attachMenu'], 'role' => 'form' , 'id' => 'form']) }}
 {{ Form::hidden('id', $id)  }}
 <div class='col-md-8 col-md-offset-2'>
-=======
-{{ Form::open(['action' => ['catering\ReservationsController@attachMenu'], 'role' => 'form']) }}
-{{ Form::hidden('id', $id)  }}
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
+
 <div class="panel panel-default">
                  <div class="panel-heading">
                     Equipment
@@ -28,10 +25,7 @@ $('body').on('hidden.bs.modal', '.modal', function () {
                         <input type="hidden" name="pricey[]" value="{{$items->average_price}}">
                         <td><input type="hidden" name="model[]" value = "{{$items->model_number}}" class="form-control" disabled>
                             <a data-toggle="modal" href="http://localhost:8000/equip/getOne/{{$items->id}}" data-target="#menuModal">{{$items->model_number}}</a>
-<<<<<<< HEAD
-=======
 
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
                         </td>
                         <td>{{Form::number('quantity[]',0,['class' => 'form-control', 'placeholder' => 'Qty'])}}</td>
                     </tr>
@@ -200,7 +194,7 @@ $('body').on('hidden.bs.modal', '.modal', function () {
          </div>{{--panel dessert--}}
                 </div>
             @endfor
-<<<<<<< HEAD
+
             <button type="submit" class="btn btn-danger pull-right" id="btn_confirm"> Proceed to Checkout &gt; &gt; </button>
       </div>
 
@@ -235,13 +229,5 @@ $('body').on('hidden.bs.modal', '.modal', function () {
         });
     });
 </SCRIPT>
-=======
-            <button type="submit" class="btn btn-danger pull-right"> Proceed to Checkout &gt; &gt; </button>
-      </div>
 
-    </div>
-
-{{Form::close()}}
-
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
 @stop

@@ -25,29 +25,22 @@ use Term;
 use Carousel;
 use ItemType;
 use SiTb;
-<<<<<<< HEAD
+
 use Information;
 use Session;
-=======
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
+
+
 class ReservationsController extends \BaseController {
 
     public function equipments()
     {
-<<<<<<< HEAD
+
         return View::make('catering.equip')->withCategory(ItemType::all());
-=======
-        return View::make('catering.equip')
-            ->withCategory(ItemType::all());
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
+
     }
 
     public function home()
     {
-<<<<<<< HEAD
-       
-=======
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
         return View::make('catering.home')->withCarousel(Carousel::get());
     }
 
@@ -56,18 +49,11 @@ class ReservationsController extends \BaseController {
         return View::make('catering.menu')
             ->withPackages(Packages::all())->withCategory(Category::all());
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
     public function contact()
     {
         return View::make('catering.contact');
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
     public function contactStore()
     {
         $contact = new Contact;
@@ -75,13 +61,7 @@ class ReservationsController extends \BaseController {
         $contact->title = Input::get('subject');
         $contact->description = Input::get('details');
         $contact->save();
-<<<<<<< HEAD
         return Redirect::action('catering\ReservationsController@thanks');
-=======
-
-        return Redirect::action('catering\ReservationsController@thanks');
-
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
     }
     public function thanks()
     {
@@ -94,23 +74,12 @@ class ReservationsController extends \BaseController {
         $i = 0;
         $pass = '' ;
         while ($i <= 7) {
-<<<<<<< HEAD
-=======
-
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
             $num = rand() % 33;
             $tmp = substr($chars, $num, 1);
             $pass = $pass . $tmp;
             $i++;
-<<<<<<< HEAD
         }
         $terms = Condition::orderBy('number')->get();
-=======
-
-        }
-        $terms = Condition::orderBy('number')->get();
-
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
         $pasta = Menu::where('scat','=','pasta')->get();
         $dessert = Menu::where('scat','=','dessert')->get();
         $bread = Menu::where('scat','=','bread')->get();
@@ -118,11 +87,6 @@ class ReservationsController extends \BaseController {
         $salad = Menu::where('scat','=','salad')->get();
         $soup = Menu::where('scat','=','soup')->get();
         $vegetable = Menu::where('scat','=','vegetable')->get();
-<<<<<<< HEAD
-        $cancellation = Maintenance::where(['name' => 'cancellation fee','type' => 'fee'])->first();
-        $finalcode='ID-'.$pass;
-        return View::make('catering.reservation',compact('cancellation','terms','finalcode','dessert','pasta','bread','drink','salad','soup','vegetable'));
-=======
 
     $cancellation = Maintenance::where([
             'name' => 'cancellation fee',
@@ -132,8 +96,6 @@ class ReservationsController extends \BaseController {
 
         $finalcode='ID-'.$pass;
         return View::make('catering.reservation',compact('cancellation','terms','finalcode','dessert','pasta','bread','drink','salad','soup','vegetable'));
-
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
     }
 
 
@@ -146,74 +108,6 @@ class ReservationsController extends \BaseController {
 	{
 		//
 	}
-
-<<<<<<< HEAD
-	
-=======
-	public function store()
-	{
-        $paxMin = Maintenance::where([
-                'name' => 'pax',
-                'type' => 'min'
-            ])->first();
-
-        $paxMax = Maintenance::where([
-            'name' => 'pax',
-            'type' => 'max'
-        ])->first();
-
-        $format = date_format(Carbon::now()->addDays(13),"Y/m/d");
-
-        $dateFromForm = date('Y/m/d',strtotime(Input::get('reservation_start') . ' -1 days'));
-
-
-        $validator = Validator::make(Input::all(),[ 
-            'pax' => "max:{$paxMax->value}|min:{$paxMin->value}|integer",
-            'reservation_start'    => 'after:' . $format,
-            'reservation_end'    => 'after:' . $dateFromForm
-        ]);
-
-        if($validator->fails()){
-            //return $validator->messages()->toJson();
-            return Redirect::back()->withInput()->withErrors($validator->messages());
-            
-        }
-
-
-
-        $reservation = new Reservation;
-        $reservation->fill(Input::all());
-        $reservation->status = 'Payment Pending';
-        if($reservation->save())
-        {
-            $date1 = new DateTime(Input::get('reservation_start'));
-            $date2 = new DateTime(Input::get('reservation_end'));
-
-            $diff = $date2->diff($date1)->format("%a");
-            $diff += 1;
-            $id = Input::get('id');
-
-            $pasta = Menu::where('scat','=','pasta')->get();
-            $dessert = Menu::where('scat','=','dessert')->get();
-            $bread = Menu::where('scat','=','bread')->get();
-            $drink = Menu::where('scat','=','drinks')->get();
-            $salad = Menu::where('scat','=','salad')->get();
-            $soup = Menu::where('scat','=','soup')->get();
-            $vegetable = Menu::where('scat','=','vegetables')->get();
-            $chicken = Menu::where('scat','=','chicken')->get();
-            $beef = Menu::where('scat','=','beef')->get();
-            $fish = Menu::where('scat','=','fish')->get();
-            $pork = Menu::where('scat','=','pork')->get();
-
-            $packages = Packages::get();
-            $item = Item::all();
-            return View::make('catering.reservation_continuation',compact('item','packages','id','diff','chicken','pork','fish','beef','dessert','pasta','bread','drink','salad','soup','vegetable'));
-
-        }
-
-		return Input::all();
-	}
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
 
 
 	/**
@@ -262,7 +156,7 @@ class ReservationsController extends \BaseController {
 	{
 		//
 	}
-<<<<<<< HEAD
+
     //Step 1 make reservation : post request
     public function store()
     {
@@ -316,23 +210,13 @@ class ReservationsController extends \BaseController {
         $reservation = Session::get('reservation'); //Use the reservation saved on the session
         $reservation->save(); //not sure if this good , but save the reservation on the session now
         $reservation = Reservation::find($reservation->id); //find the reservation , and use the reservation from the database so we can add relations
-=======
-
-    public function attachMenu()
-    {
-        $reservation = Reservation::find(Input::get('id'));
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
         $date1 = new DateTime($reservation->reservation_start);
         $date2 = new DateTime($reservation->reservation_end);
         $diff = $date2->diff($date1)->format("%a");
         $diff += 1;
         $date1 = date_format($date1, 'l, jS F Y');
         $date2 = date_format($date2, 'l, jS F Y');
-<<<<<<< HEAD
         $id = $reservation->id;
-=======
-        $id = Input::get('id');
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
         $total_price = 0;
         $package_price = 0;
         $pricezs = 0;
@@ -340,8 +224,7 @@ class ReservationsController extends \BaseController {
         $model = Input::get('model');
         $invid = Input::get('invId');
         $pricey = Input::get('pricey');
-<<<<<<< HEAD
-        
+
             //add the items
             for($i=0; $i<count($qty); $i++)
             {
@@ -427,48 +310,7 @@ class ReservationsController extends \BaseController {
             ])->first();
             return View::make('catering.reservation_summary', compact('cancellation','id','diff','reservation','date1','date2'));
         }
-=======
-        for($i=0; $i<count($qty); $i++)
-        {
-            if($qty[$i] > 0)
-            {
-                $reservation->items()->attach($invid[$i], ['qty' => $qty[$i]]);
-                $pricezs = $pricezs + (int)$pricey[$i] *  $qty[$i];
-            }
-        }
-        for($index = 1; $index <= $diff; $index++)
-        {
-            if(count(Input::get('menu'.$index)) > 0)
-            {
 
-                foreach(Input::get('menu'.$index) as $menu)
-                {
-                    $reservation->menus()->attach($menu,['day' => $index]);
-                    $price = Menu::find($menu);
-                    $total_price += $price->price;
-                }
-            }
-
-            if(count(Input::get('package'.$index)) > 0)
-            {
-                foreach (Input::get('package' . $index) as $package)
-                {
-                    foreach (DB::table('menu_package')->where('package_id', '=', $package)->get() as $fuckage)
-                    {
-                       $reservation->menus()->attach($fuckage->menu_id, ['day' => $index,'package' => $package]);
-                    }
-                    $price = Packages::find($package);
-                    $package_price += $price->price;
-                }
-            }
-        }
-        $reservation->net_total = ($total_price * $reservation->pax) + $package_price + $pricezs;
-        $reservation->save();
-       return View::make('catering.reservation_summary', compact('id','diff','reservation','date1','date2'));
-
-    }
-
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
     public function checkReservation()
     {
         $reservation = Reservation::find(Input::get('id'));
@@ -479,35 +321,19 @@ class ReservationsController extends \BaseController {
         $date1 = date_format($date1, 'l, jS F Y');
         $date2 = date_format($date2, 'l, jS F Y');
         $id = Input::get('id');
-<<<<<<< HEAD
         $cancellation = Maintenance::where([
-=======
- $cancellation = Maintenance::where([
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
+
             'name' => 'cancellation fee',
             'type' => 'fee'
         ])->first();
 
         return View::make('catering.reservation_summary', compact('cancellation','id','diff','reservation','date1','date2'));
     }
-<<<<<<< HEAD
+
     public function checkReservationGet($id)
     {
         
         $reservation = Reservation::find($id);
-=======
-
-    public function checkout()
-    {
-        return 'foo';
-    }
-
-    public function attachPayment()
-    {
-        $reservation = Reservation::find(Input::get('id'));
-        $reservation->fill(Input::all());
-        $reservation->save();
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
         $date1 = new DateTime($reservation->reservation_start);
         $date2 = new DateTime($reservation->reservation_end);
         $diff = $date2->diff($date1)->format("%a");
@@ -515,17 +341,13 @@ class ReservationsController extends \BaseController {
         $date1 = date_format($date1, 'l, jS F Y');
         $date2 = date_format($date2, 'l, jS F Y');
         $id = Input::get('id');
-<<<<<<< HEAD
         $cancellation = Maintenance::where([
-=======
- $cancellation = Maintenance::where([
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
             'name' => 'cancellation fee',
             'type' => 'fee'
         ])->first();
 
         return View::make('catering.reservation_summary', compact('cancellation','id','diff','reservation','date1','date2'));
-<<<<<<< HEAD
+
     }
 
     public function checkout()
@@ -533,13 +355,6 @@ class ReservationsController extends \BaseController {
         return 'foo';
     }
 
-    
-
-=======
-
-    }
-
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
     public function getMenu($menu)
     {
         $menu = Menu::find($menu);

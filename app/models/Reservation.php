@@ -10,14 +10,13 @@ class Reservation extends Eloquent{
 
     protected $fillable = ['id','first_name','pax','payment_mode','payment_method', 'last_name', 'client_address', 'contact', 'motif','venue_address','event','date_request','event_start','event_end','reservation_start','reservation_end'];
     protected $table = 'reservations';
-<<<<<<< HEAD
+
     public $incrementing = false;
     public $rules = ['id' => 'unique:reservations'];
     public function rules(){
         return $this->rules;
     }
-=======
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
+
 
     public function menus()
     {

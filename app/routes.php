@@ -1,5 +1,5 @@
 <?php
-<<<<<<< HEAD
+
 Route::get('t' , function(){
 	dd(Session::all());
 });
@@ -17,12 +17,7 @@ Route::post('/contact',['uses'=> 'catering\ReservationsController@contactStore' 
 Route::get('/misc/list-information/' , ['uses' => 'AdminController@information' , 'as' => 'misc.list']);
 Route::get('/misc/set-information/{id}/{value}' , ['uses' => 'AdminController@editInformation' , 'as' => 'misc.edit']);
 
-=======
-Route::get('/', 'catering\ReservationsController@home');
 
-Route::get('/home', 'catering\ReservationsController@home');
-Route::get('/equip','catering\ReservationsController@equipments');
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
 Route::get('/sign-in', 'AuthController@getSignIn');
 Route::post('/sign-in', 'AuthController@postSignIn');
 Route::get('/sign-out', 'AuthController@getSignOut');
@@ -181,20 +176,15 @@ Route::get('/settings/suppliers/{supplier}/edit', 'Settings\SuppliersController@
 Route::put('/settings/suppliers/{supplier}', 'Settings\SuppliersController@update');
 
 //Reservation Stuffs
-<<<<<<< HEAD
+
 Route::get('reservation/checkGet/reservation/{id}','catering\ReservationsController@checkReservationGet');
 Route::get('/reservation/selection/' , ['uses' => 'catering\ReservationsController@showSelection' , 'as' => 'home.reservation.selection']);
 
-=======
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
 Route::resource('reservation','catering\ReservationsController');
 /*ADDED STUFFS >after()*/
 Route::post('reservation/addReservation','catering\ReservationsController@attachMenu')->after('invalidate-browser-cache');
 Route::post('reservation/addPayment','catering\ReservationsController@attachPayment');
-<<<<<<< HEAD
 
-=======
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
 Route::get('/pdf/{reservation}', 'catering\ReservationsController@attachPdf');
 Route::get('/pdf/{reservation}/full', 'catering\ReservationsController@fullPdf');
 Route::get('reservation/checkout','catering\ReservationsController@checkout');
@@ -256,13 +246,13 @@ Route::post('admin/reservation/update/additional/detachItem', 'AdminController@d
 Route::post('admin/reservation/update/additional/returnItem/item', 'AdminController@returnAdditionalItem');
 Route::post('admin/reservation/update/additional/brokenItem/item', 'AdminController@brokenAdditionalItem');
 Route::get('/menu/home', 'catering\ReservationsController@homeMenu');
-<<<<<<< HEAD
 
-=======
+/*
 Route::get('/contact', 'catering\ReservationsController@contact');
 Route::get('/thanks', 'catering\ReservationsController@thanks');
 Route::post('/contact', 'catering\ReservationsController@contactStore');
->>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
+*/
+
 
 Route::get('admin/contact', 'AdminController@contact');
 Route::get('admin/contact/delete/message/{id}', 'AdminController@deleteMessage');
