@@ -37,6 +37,10 @@ class AuthController extends BaseController
             Auth::login($user);
             return Redirect::action('AdminController@index');
         } 
+<<<<<<< HEAD
         return Redirect::back()->withErrors('Invalid Credentials');
+=======
+        return Redirect::back();
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
     }
 }

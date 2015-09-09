@@ -57,7 +57,11 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'catering',
 			'username'  => 'root',
+<<<<<<< HEAD
 			'password'  => '',
+=======
+			'password'  => 'unix',
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

@@ -7,6 +7,7 @@
         <link href="{{ asset('bower_components/datepicker/css/datepicker.css') }}" rel="stylesheet">
         <link href="{{ asset('bower_components/bootswatch/cerulean/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('bower_components/fontawesome/css/font-awesome.min.css') }}" rel="stylesheet">
+<<<<<<< HEAD
         <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.min.js"></script>
         <script>window.html5 || document.write('<script src="{{ asset('js/vendor/html5shiv-3.7.0.min.js') }}"><\/script>')</script>
         <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -18,6 +19,21 @@
         {{HTML::style('http://fonts.googleapis.com/css?family=Open+Sans')}}
         {{HTML::style('addasset/css/sweetalert.css')}}
        
+=======
+         <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.min.js"></script>
+              <script>window.html5 || document.write('<script src="{{ asset('js/vendor/html5shiv-3.7.0.min.js') }}"><\/script>')</script>
+              <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+              <script>window.respond || document.write('<script src="{{ asset('js/vendor/respond-1.4.2.min.js') }}"><\/script>')</script>
+      {{HTML::style('homepage/css/bootstrap.min.css')}}
+     {{HTML::style('assets/css/font-awesome.css')}}
+     {{HTML::style('assets/js/morris/morris-0.4.3.min.css')}}
+     {{HTML::style('assets/css/custom.css')}}
+     {{HTML::style('http://fonts.googleapis.com/css?family=Open+Sans')}}
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
 </head>
 <body>
 @yield('modal')
@@ -143,9 +159,12 @@ font-size: 16px;">  <a href="/" class="btn btn-danger square-btn-adjust">Logout<
                       <li>
                         <a href="#"><i class="fa fa-pencil fa-3x"></i> Miscellaneous<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
+<<<<<<< HEAD
                            <li>
                                 <a href="{{action('AdminController@information')}}">Company Information</a>
                             </li>
+=======
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
                             <li>
                                 <a href="{{action('AdminController@termsncon')}}">Terms and Conditions</a>
                             </li>
@@ -178,7 +197,11 @@ font-size: 16px;">  <a href="/" class="btn btn-danger square-btn-adjust">Logout<
     </div>
     @endif
 
+<<<<<<< HEAD
 
+=======
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
         <script>window.jQuery || document.write('<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"><\/script>')</script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -222,24 +245,39 @@ font-size: 16px;">  <a href="/" class="btn btn-danger square-btn-adjust">Logout<
      <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
+<<<<<<< HEAD
         <script src="{{asset('homepage/js/jquery-1.9.1.min.js')}}"></script>
         <script>window.jQuery || document.write('<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"><\/script>')</script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('bower_components/datepicker/js/bootstrap-datepicker.js') }}"></script>
         <script>window.jQuery || document.write('<script src="homepage/js/jquery-1.9.1.min.js"><\/script>')</script>
+=======
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+                                            <script>window.jQuery || document.write('<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"><\/script>')</script>
+                                            <!-- Include all compiled plugins (below), or include individual files as needed -->
+                                            <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+                                            <script src="{{ asset('bower_components/datepicker/js/bootstrap-datepicker.js') }}"></script>
+                           	    <script>window.jQuery || document.write('<script src="homepage/js/jquery-1.9.1.min.js"><\/script>')</script>
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
         <script src="{{ asset('assets/js/jquery-1.10.2.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.metisMenu.js') }}"></script>
         <script src="{{ asset('assets/js/morris/raphael-2.1.0.min.js') }}"></script>
         <script src="{{ asset('assets/js/morris/morris.js') }}"></script>
         <script src="{{ asset('assets/js/custom.js') }}"></script>
+<<<<<<< HEAD
         <script src="{{ asset('addasset/js/jquery.js') }}"></script>
         <script src="{{ asset('addasset/js/jquery.min.js') }}"></script>
+=======
+
+       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
         <script>window.jQuery || document.write('<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"><\/script>')</script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('bower_components/datepicker/js/bootstrap-datepicker.js') }}"></script>
+<<<<<<< HEAD
         <script src="{{asset('addasset/js/sweetalert.min.js')}}"></script>
         <script type="text/javascript">
          @if($errors)
@@ -262,5 +300,7 @@ font-size: 16px;">  <a href="/" class="btn btn-danger square-btn-adjust">Logout<
         @endif
         </script>
         @yield('scripts')
+=======
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
  </body>
 </html>

@@ -282,11 +282,25 @@
          </tbody>
          <tfoot>
 
+<<<<<<< HEAD
             @if($reservation->payment_mode == 'Down Payment')
                 <tr><td colspan="4" class="pull-left"><b>Amount Paid:</b> {{round($reservation->net_total/2,2)}}</td></tr>
                 <tr><td colspan="4" class="pull-left"><b>Remaining Balance:</b> {{round($reservation->net_total/2,2)}}</td></tr>
                  @endif
                  <tr><td colspan="4" class="pull-left"><b>Grand Total:</b> {{$reservation->net_total}}</td></tr>
+=======
+				@if($reservation->amount_paid == $reservation->net_total)
+					<tr><td colspan="4" class="pull-left"><b>Status:</b>Fully Paid</td></tr>	
+				@else
+					<tr><td colspan="4" class="pull-left"><b>Status:</b>Not Yet Fully Paid</td></tr>
+				@endif
+
+            @if($reservation->payment_mode == 'Down Payment')
+                <tr><td colspan="4" class="pull-left"><b>Amount Paid:</b> {{number_format($reservation->amount_paid,2)}}</td></tr>
+                <tr><td colspan="4" class="pull-left"><b>Remaining Balance:</b> {{number_format($reservation->net_total - $reservation->amount_paid,2)}}</td></tr>
+                 @endif
+			<tr><td colspan="4" class="pull-left"><b>Grand Total:</b> {{number_format($reservation->net_total)}}</td></tr>
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
 
          </tfoot>
       </table>

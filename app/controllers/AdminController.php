@@ -109,6 +109,7 @@ class AdminController extends \BaseController {
         $fpdf->Output();
         exit;
     }
+<<<<<<< HEAD
     public function information(){
         $informations = Information::all();
         return View::make('admin.information')->with(compact('informations'));
@@ -122,6 +123,9 @@ class AdminController extends \BaseController {
         }
         return Redirect::back()->withErrors('Information not found!');
     }
+=======
+
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
     public function MenuTable($header, $data, $reservation, $fpdf)
     {
         // Colors, line width and bold font
@@ -342,7 +346,11 @@ class AdminController extends \BaseController {
             App::abort(404);
         }
 
+<<<<<<< HEAD
             $reservation->middle_name = $reservation->middle_name + Input::get('amount');
+=======
+            $reservation->amount_paid = $reservation->amount_paid + Input::get('amount');
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
             $reservation->save();
 
 
@@ -478,7 +486,12 @@ class AdminController extends \BaseController {
         $reservation = Item::find(Input::get('item_id_get'));
         $reservation->total_quantity = $reservation->total_quantity + (Input::get('quantity'));
         $reservation->save();
+<<<<<<< HEAD
         return Redirect::back();
+=======
+		
+		return Redirect::back();
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
     }
 
     public function brokenAdditionalItem()

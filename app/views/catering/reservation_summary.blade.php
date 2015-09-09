@@ -2,9 +2,17 @@
 
 @section('body')
 <script type="text/javascript">
+<<<<<<< HEAD
   
 </script>
  <div class="panel panel-default col-md-8 col-md-offset-2">
+=======
+    window.onbeforeunload = function() {
+        return "Dude, are you sure you want to leave? Think of the kittens!";
+    }
+</script>
+ <div class="panel panel-default" >
+>>>>>>> 4ba5cd4d3c1e2b31dca4424c57b755d7e8418bf5
  	<fieldset>
  		<legend>
  			<h3 style="text-align:center;">Reservation Summary</h3>
