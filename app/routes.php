@@ -1,8 +1,23 @@
 <?php
-Route::get('/', 'catering\ReservationsController@home');
 
+Route::get('t' , function(){
+	dd(Session::all());
+});
+Route::get('f' , function(){
+	Session::flush();
+});
+
+Route::get('/', ['uses' =>'catering\ReservationsController@home' , 'as' => 'home.index']);
 Route::get('/home', 'catering\ReservationsController@home');
 Route::get('/equip','catering\ReservationsController@equipments');
+Route::get('/contact',['uses' => 'catering\ReservationsController@contact' , 'as' => 'home.contact']);
+Route::get('/thanks', 'catering\ReservationsController@thanks');
+Route::post('/contact',['uses'=> 'catering\ReservationsController@contactStore' , 'as' => 'home.contact.save']);
+
+Route::get('/misc/list-information/' , ['uses' => 'AdminController@information' , 'as' => 'misc.list']);
+Route::get('/misc/set-information/{id}/{value}' , ['uses' => 'AdminController@editInformation' , 'as' => 'misc.edit']);
+
+
 Route::get('/sign-in', 'AuthController@getSignIn');
 Route::post('/sign-in', 'AuthController@postSignIn');
 Route::get('/sign-out', 'AuthController@getSignOut');
@@ -161,10 +176,15 @@ Route::get('/settings/suppliers/{supplier}/edit', 'Settings\SuppliersController@
 Route::put('/settings/suppliers/{supplier}', 'Settings\SuppliersController@update');
 
 //Reservation Stuffs
+
+Route::get('reservation/checkGet/reservation/{id}','catering\ReservationsController@checkReservationGet');
+Route::get('/reservation/selection/' , ['uses' => 'catering\ReservationsController@showSelection' , 'as' => 'home.reservation.selection']);
+
 Route::resource('reservation','catering\ReservationsController');
 /*ADDED STUFFS >after()*/
 Route::post('reservation/addReservation','catering\ReservationsController@attachMenu')->after('invalidate-browser-cache');
 Route::post('reservation/addPayment','catering\ReservationsController@attachPayment');
+
 Route::get('/pdf/{reservation}', 'catering\ReservationsController@attachPdf');
 Route::get('/pdf/{reservation}/full', 'catering\ReservationsController@fullPdf');
 Route::get('reservation/checkout','catering\ReservationsController@checkout');
@@ -226,9 +246,13 @@ Route::post('admin/reservation/update/additional/detachItem', 'AdminController@d
 Route::post('admin/reservation/update/additional/returnItem/item', 'AdminController@returnAdditionalItem');
 Route::post('admin/reservation/update/additional/brokenItem/item', 'AdminController@brokenAdditionalItem');
 Route::get('/menu/home', 'catering\ReservationsController@homeMenu');
+
+/*
 Route::get('/contact', 'catering\ReservationsController@contact');
 Route::get('/thanks', 'catering\ReservationsController@thanks');
 Route::post('/contact', 'catering\ReservationsController@contactStore');
+*/
+
 
 Route::get('admin/contact', 'AdminController@contact');
 Route::get('admin/contact/delete/message/{id}', 'AdminController@deleteMessage');

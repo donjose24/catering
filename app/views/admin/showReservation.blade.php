@@ -282,6 +282,13 @@
          </tbody>
          <tfoot>
 
+<!--
+            @if($reservation->payment_mode == 'Down Payment')
+                <tr><td colspan="4" class="pull-left"><b>Amount Paid:</b> {{round($reservation->net_total/2,2)}}</td></tr>
+                <tr><td colspan="4" class="pull-left"><b>Remaining Balance:</b> {{round($reservation->net_total/2,2)}}</td></tr>
+                 @endif
+                 <tr><td colspan="4" class="pull-left"><b>Grand Total:</b> {{$reservation->net_total}}</td></tr> -->
+
 				@if($reservation->amount_paid == $reservation->net_total)
 					<tr><td colspan="4" class="pull-left"><b>Status:</b>Fully Paid</td></tr>	
 				@else
@@ -293,6 +300,7 @@
                 <tr><td colspan="4" class="pull-left"><b>Remaining Balance:</b> {{number_format($reservation->net_total - $reservation->amount_paid,2)}}</td></tr>
                  @endif
 			<tr><td colspan="4" class="pull-left"><b>Grand Total:</b> {{number_format($reservation->net_total)}}</td></tr>
+
 
          </tfoot>
       </table>

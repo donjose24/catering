@@ -28,130 +28,132 @@
 @section('body')
     {{ Form::open(['action' => 'catering\ReservationsController@store', 'role' => 'form']) }}
 
- <div class="service-wrapper">
+    <div class="col-md-8 col-md-offset-2" >
+    <div class="service-wrapper">
+        <fieldset>
+                 <legend>
+                     <div>
+                         <h3>Create new Reservation</h3>
+                     </div>
+                 </legend>
+            {{Form::hidden('id',$finalcode) }}
+            {{Form::hidden('date_request', Carbon::now())}}
 
-                                        <fieldset>
-                                                 <legend>
-                                                     <div>
-                                                         <h3>Make Reservation</h3>
-                                                     </div>
-                                                 </legend>
+                 <div class="form-group">
+                     <label class="col-lg-3 control-label">First Name:</label>
+                     <div class="col-lg-8">
+                    {{ Form::text('first_name','',['class' => 'form-control', 'placeholder' => 'First Name', 'autofocus' => 'true', 'required']) }}
+                 </div>
+                 </div>
 
+                 <div class="form-group">
+                     <label class="col-lg-3 control-label">Last Name:</label>
+                     <div class="col-lg-8">
+                      {{ Form::text('last_name','',['class' => 'form-control', 'placeholder' => 'Last Name', 'required']) }}
+                  </div>
+                 </div>
 
+                 <div class="form-group">
+                     <label class="col-lg-3 control-label">Address:</label>
+                     <div class="col-lg-8">
+                    {{ Form::text('client_address','',['class' => 'form-control', 'placeholder' => 'Address', 'required']) }}
+                  </div>
+                 </div>
 
-                                             {{ Form::hidden('id',$finalcode) }}
-                                            {{Form::hidden('date_request', Carbon::now())}}
+                 <div class="form-group">
+                     <label class="col-lg-3 control-label">Contact:</label>
+                     <div class="col-lg-8">
+                    {{ Form::text('contact','',['class' => 'form-control', 'placeholder' => 'Contact', 'required']) }}
+                  </div>
+                 </div>
 
-                                                 <div class="form-group">
-                                                     <label class="col-lg-3 control-label">First Name:</label>
-                                                     <div class="col-lg-8">
-                                                    {{ Form::text('first_name','',['class' => 'form-control', 'placeholder' => 'First Name', 'autofocus' => 'true', 'required']) }}
-                                                 </div>
-                                                 </div>
+                 <div class="form-group">
+                     <label class="col-lg-3 control-label">Date From:</label>
+                     <div class="col-lg-4 ">
+                         <input type="date" name="reservation_start" class="form-control" required="required" />
+                     </div>
+                     <label class="col-lg-1 control-label">To:</label>
+                      <div class="col-lg-3 col-md-3 ">
+                           <input type="date" name="reservation_end" class="form-control" required="required" />
+                      </div>
+                      <br>
 
-                                                 <div class="form-group">
-                                                     <label class="col-lg-3 control-label">Last Name:</label>
-                                                     <div class="col-lg-8">
-                                                      {{ Form::text('last_name','',['class' => 'form-control', 'placeholder' => 'Last Name', 'required']) }}
-                                                  </div>
-                                                 </div>
+                 </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                        @if($errors->has('reservation_start'))
+                           {{$errors->first('reservation_start')}}
+                           <br>
+                        @endif
+                        @if($errors->has('reservation_end'))
+                            {{$errors->first('reservation_end')}}
+                        @endif
+                        </div>
+                        </div>
+                 <div class="form-group">
+                     <label class="col-lg-3 control-label">Motif:</label>
+                     <div class="col-lg-8">
+                            {{ Form::text('motif','',['class' => 'form-control', 'placeholder' => 'Event Motif', 'required']) }}
+                      </div>
+                 </div>
 
-                                                 <div class="form-group">
-                                                     <label class="col-lg-3 control-label">Address:</label>
-                                                     <div class="col-lg-8">
-                                                    {{ Form::text('client_address','',['class' => 'form-control', 'placeholder' => 'Address', 'required']) }}
-                                                  </div>
-                                                 </div>
+                 <div class="form-group">
+                     <label class="col-lg-3 control-label">Type Of Occasion:</label>
+                     <div class="col-lg-8">
+                            {{ Form::text('event','',['class' => 'form-control', 'placeholder' => 'Occassion Type', 'required']) }}
+                     </div>
+                 </div>
+                  <div class="form-group">
+                      <label class="col-lg-3 control-label">Number of Person:</label>
+                      <div class="col-lg-8">
+                             {{ Form::text('pax','',['class' => 'form-control', 'placeholder' => 'Number of Person', 'required']) }}
+                         @if($errors->has('pax'))
+                             {{$errors->first('pax')}}
+                         @endif
+                      </div>
 
-                                                 <div class="form-group">
-                                                     <label class="col-lg-3 control-label">Contact:</label>
-                                                     <div class="col-lg-8">
-                                                    {{ Form::text('contact','',['class' => 'form-control', 'placeholder' => 'Contact', 'required']) }}
-                                                  </div>
-                                                 </div>
+                  </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Time From:</label>
+                    <div class="col-lg-3 ">
+                        <input type="time" name="event_start" class="tcal form-control" required="required" />
+                    </div>
 
-                                                 <div class="form-group">
-                                                     <label class="col-lg-3 control-label">Date From:</label>
-                                                     <div class="col-lg-4 ">
-                                                         <input type="date" name="reservation_start" class="form-control" required="required" />
-                                                     </div>
-                                                     <label class="col-lg-1 control-label">To:</label>
-                                                      <div class="col-lg-3 col-md-3 ">
-                                                           <input type="date" name="reservation_end" class="form-control" required="required" />
-                                                      </div>
-                                                      <br>
+                    <label class="col-lg-2 control-label">To:</label>
+                    <div class="col-lg-3 ">
+                        <input type="time" name="event_end" class="tcal form-control" required="required" />
+                    </div>
+                </div>
 
-                                                 </div>
-                                                    <div class="form-group">
-                                                        <div class="col-lg-12">
-                                                        @if($errors->has('reservation_start'))
-                                                           {{$errors->first('reservation_start')}}
-                                                           <br>
-                                                        @endif
-                                                        @if($errors->has('reservation_end'))
-                                                            {{$errors->first('reservation_end')}}
-                                                        @endif
-                                                        </div>
-                                                        </div>
-                                                 <div class="form-group">
-                                                     <label class="col-lg-3 control-label">Motif:</label>
-                                                     <div class="col-lg-8">
-                                                            {{ Form::text('motif','',['class' => 'form-control', 'placeholder' => 'Event Motif', 'required']) }}
-                                                      </div>
-                                                 </div>
+                 <div class="form-group">
+                     <label class="col-lg-3 control-label">Venue Address:</label>
+                     <div class="col-lg-8">
+                            {{ Form::text('venue_address','',['class' => 'form-control', 'placeholder' => 'Venue Address', 'required']) }}
+                     </div>
+                 </div>
 
-                                                 <div class="form-group">
-                                                     <label class="col-lg-3 control-label">Type Of Occasion:</label>
-                                                     <div class="col-lg-8">
-                                                            {{ Form::text('event','',['class' => 'form-control', 'placeholder' => 'Occassion Type', 'required']) }}
-                                                     </div>
-                                                 </div>
-                                                  <div class="form-group">
-                                                      <label class="col-lg-3 control-label">Number of Person:</label>
-                                                      <div class="col-lg-8">
-                                                             {{ Form::text('pax','',['class' => 'form-control', 'placeholder' => 'Number of Person', 'required']) }}
-                                                         @if($errors->has('pax'))
-                                                             {{$errors->first('pax')}}
-                                                         @endif
-                                                      </div>
+                {{--LALALAL--}}
+                 <div class="checkbox">
+                     <label class="col-lg-4"></label>
+                     <div class="col-lg-6">
+                         <input type="checkbox" required name="condition" value="checkbox" style="width: 13px;" /><p> I agree the <a rel="facebox" data-toggle="modal" data-target="#myModal" href="#">terms and condition</a> of this site                                                                                                                                   </p> </div>
+                 </div>
+                 <div class="form-group">
+                     <div class="col-lg-8 col-lg-offset-3">
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                  <button type="cancel" class="btn btn-cancel" style="" value="Cancel" style="margin-right:20px;"> Cancel</button>
+                              </div>
+                              <div class="btn-group" role="group">
+                                <button type="submit" class="btn btn-primary" value="Reserve">Next</button>
+                              </div>
 
-                                                  </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-3 control-label">Time From:</label>
-                                                    <div class="col-lg-3 ">
-                                                        <input type="time" name="event_start" class="tcal form-control" required="required" />
-                                                    </div>
-
-                                                    <label class="col-lg-2 control-label">To:</label>
-                                                    <div class="col-lg-3 ">
-                                                        <input type="time" name="event_end" class="tcal form-control" required="required" />
-                                                    </div>
-                                                </div>
-
-                                                 <div class="form-group">
-                                                     <label class="col-lg-3 control-label">Venue Address:</label>
-                                                     <div class="col-lg-8">
-                                                            {{ Form::text('venue_address','',['class' => 'form-control', 'placeholder' => 'Venue Address', 'required']) }}
-                                                     </div>
-                                                 </div>
-
-                                                {{--LALALAL--}}
-                                                 <div class="checkbox">
-                                                     <label class="col-lg-4"></label>
-                                                     <div class="col-lg-6">
-                                                         <input type="checkbox" required name="condition" value="checkbox" style="width: 13px;" /><p> I agree the <a rel="facebox" data-toggle="modal" data-target="#myModal" href="#">terms and condition</a> of this site
-                                                                                                                                                                                                </p> </div>
-                                                 </div>
-
-                                                 <div class="form-group">
-                                                     <div class="col-lg-10 col-lg-offset-2">
-                                                         <button type="cancel" class="btn btn-default" value="Cancel" style="margin-right:20px;"> Cancel</button>
-                                                         <button type="submit" class="btn btn-primary" value="Reserve"> Submit</button>
-                                                     </div>
-                                                 </div>
-                                             </fieldset>
-                                         {{Form::close()}}
-
+                        </div>
+                     </div>
+                 </div>
+             </div>
+             </fieldset>
+         {{Form::close()}}
 
 </div>
 @stop

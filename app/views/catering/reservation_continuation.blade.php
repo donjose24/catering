@@ -7,8 +7,11 @@ $('body').on('hidden.bs.modal', '.modal', function () {
 });
 </script>
 
-{{ Form::open(['action' => ['catering\ReservationsController@attachMenu'], 'role' => 'form']) }}
+
+{{ Form::open(['action' => ['catering\ReservationsController@attachMenu'], 'role' => 'form' , 'id' => 'form']) }}
 {{ Form::hidden('id', $id)  }}
+<div class='col-md-8 col-md-offset-2'>
+
 <div class="panel panel-default">
                  <div class="panel-heading">
                     Equipment
@@ -191,11 +194,40 @@ $('body').on('hidden.bs.modal', '.modal', function () {
          </div>{{--panel dessert--}}
                 </div>
             @endfor
-            <button type="submit" class="btn btn-danger pull-right"> Proceed to Checkout &gt; &gt; </button>
+
+            <button type="submit" class="btn btn-danger pull-right" id="btn_confirm"> Proceed to Checkout &gt; &gt; </button>
       </div>
 
     </div>
+</div>
 
 {{Form::close()}}
+
+@stop
+
+@section('scripts')
+<SCRIPT TYPE="text/javascript">
+    
+    $(document).ready(function(){
+        $('#btn_confirm').click(function(e){
+            e.preventDefault();
+            swal({   title: "Halt!?",  
+             text: "Are you sure you want to proceed to checkout?",  
+              type: "warning",  
+               showCancelButton: true,  
+                confirmButtonColor: "#DD6B55", 
+                  confirmButtonText: "Proceed",   
+                  cancelButtonText: "No", 
+                    closeOnConfirm: false,   closeOnCancel: false }, 
+                    function(isConfirm){  
+                    if (isConfirm) {    
+                        $('#form').submit();
+                    } 
+                    else {
+                         swal("Cancelled", "Roger that! Take your time and pick from our finest selection.", "error");   
+                    } });
+        });
+    });
+</SCRIPT>
 
 @stop
