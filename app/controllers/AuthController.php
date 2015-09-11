@@ -12,13 +12,15 @@ class AuthController extends BaseController
         return View::make('auth.sign-in');
     }
 
+    public function getLogin(){
+        return View::make('auth.admin-sign-in');
+    }
     public function postSignIn()
     {
         if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
-
-            return Redirect::intended('/');
+            return Redirect::action('AdminController@index');
         } else {
-            return Redirect::action('AuthController@getSignIn');
+            return Redirect::back()->withErrors('Invalid Credentials');
         }
     }
 

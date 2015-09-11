@@ -16,13 +16,19 @@ class Reservation extends Eloquent{
     public function rules(){
         return $this->rules;
     }
-
-
     public function menus()
     {
         return $this->belongsToMany('Menu')->withPivot('day','package');
     }
+    public function menu(){
+        return $this->belongsToMany('menu');
+    }
+    public function item(){
+        return $this->belongsToMany('item');
+    }
+    public function package(){
 
+    }
     public function messages()
     {
         return $this->hasMany('Message');

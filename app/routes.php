@@ -17,6 +17,7 @@ Route::post('/contact',['uses'=> 'catering\ReservationsController@contactStore' 
 Route::get('/misc/list-information/' , ['uses' => 'AdminController@information' , 'as' => 'misc.list']);
 Route::get('/misc/set-information/{id}/{value}' , ['uses' => 'AdminController@editInformation' , 'as' => 'misc.edit']);
 
+Route::get('/login' , ['uses' => 'AuthController@getLogin' , 'as' => 'default.login']);
 
 Route::get('/sign-in', 'AuthController@getSignIn');
 Route::post('/sign-in', 'AuthController@postSignIn');

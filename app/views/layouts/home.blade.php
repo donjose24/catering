@@ -22,9 +22,11 @@
         {{HTML::style('homepage/css/main.css')}}
 
         {{HTML::style('addasset/css/sweetalert.css')}}
-        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-       <script src="{{asset('homepage/js/jquery.sequence-min.js')}}"></script>
+        
 
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script src="{{asset('homepage/js/jquery.sequence-min.js')}}"></script>
+        
 
         <script>
             function switchDay(day, numberDays)
@@ -128,7 +130,7 @@
             <div class="container">
                 <div class="mainmenu">
                     <ul>
-                        <li class='left'><img src="{{Information::where('type' ,'=' , 'logo')->first()['value']}}" width=30 height=30/>{{Information::where('type' ,'=' , 'primary')->first()['value']}} </li>
+                        <li class='left' style="left:10px;top:0px;position:absolute;z-index:99999999;"><a href="/"><img class="img img-thumbnail "src="{{Information::where('type' ,'=' , 'logo')->first()['value']}}" width=50 height=50 /><b> {{Information::where('type' ,'=' , 'primary')->first()['value']}}</b></a></li>
                     </ul>
                 </div>
                 <nav id="mainmenu" class="mainmenu">
@@ -138,7 +140,7 @@
                         <li class=""><a href="{{url('/menu/home')}}"><i class="fa fa-navicon"></i> Menu</a></li>
                         <li class=""><a href="{{url('/reservation')}}"><i class="fa fa-book"></i> Reservation</a></li>
                         <li class=""><a href="{{url('/contact')}}"><i class="fa fa-phone"></i> Contact Us</a></li>
-                        <li><button data-toggle="modal" data-target="#loginModal" href="#" class=""><span class="fa fa-sign-in"></span> Sign in</button></li>
+                        <li><a href="{{url(route('default.login'))}}"><span class="fa fa-sign-in"></span> Sign in</a></li>
                     </ul>
                 </nav>
             </div>
@@ -254,17 +256,17 @@
 	    <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
 	    <script src="{{asset('homepage/js/jquery.fitvids.js')}}"></script>
 	    <script src="{{asset('homepage/js/jquery.bxslider.js')}}"></script>
-	    <script src="{{asset('homepage/js/template.js')}}"></script>
         <script src="{{asset('addasset/js/sweetalert.min.js')}}"></script>
         <script src="{{asset('homepage/js/main-menu.js')}}"></script>
         <script src="{{asset('homepage/js/bootstrap.min.js')}}" type="text/javascript"></script>
+        <script src="{{asset('homepage/js/template.js')}}"></script>
          @yield('scripts')
         
         @if($errors)
         <script type="text/javascript">
         $(document).ready(function(){
             var errors = '{{$errors->first()}}';
-            if(errors.length > 0)swal("Error",errors ,"error");
+            if(errors)swal("Error",errors ,"error");
         });
         </script>
         @endif

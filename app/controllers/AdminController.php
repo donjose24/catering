@@ -607,9 +607,6 @@ class AdminController extends \BaseController {
         {
             $res = Broken::get();
         }*/
-
-
-
         return $res;
     }
 
@@ -1446,6 +1443,7 @@ $total = 0;
     public function showReservation($id)
     {
         $reservation = Reservation::find($id);
+        if(!$reservation)return Redirect::back()->withErrors('Could not find reservation.');
         $date1 = new DateTime($reservation->reservation_start);
         $date2 = new DateTime($reservation->reservation_end);
         $date3 = new DateTime($reservation->date_request);
@@ -1465,9 +1463,7 @@ $total = 0;
     public function updateStatus()
     {
         $input = Input::get('status');
-
         $id = Input::get('ids');
-
         $reservation = Reservation::find($id);
         $reservation->status = $input;
         $reservation->save();
@@ -1655,10 +1651,8 @@ $total = 0;
             $tmp = substr($chars, $num, 1);
             $pass = $pass . $tmp;
             $i++;
-
         }
         $finalcode=$pass;
-
         $reservation = Reservation::find($id);
         if($reservation->payment_mode == 'Full Payment')
             $reservation->status = 'Approved';
@@ -1742,8 +1736,9 @@ $total = 0;
     {
 
         $reservation = Reservation::find(Input::get('id'));
-        $reservation->menus()->detach();
-        $reservation->items()->detach();
+        if(!$reservation)return Redirect::back()->withErrors('Could not find reservation.');
+        //$reservation->menus()->detach();
+        //$reservation->items()->detach();
         $date1 = new DateTime($reservation->reservation_start);
         $date2 = new DateTime($reservation->reservation_end);
         $diff = $date2->diff($date1)->format("%a");
@@ -1758,6 +1753,13 @@ $total = 0;
         $model = Input::get('model');
         $invid = Input::get('invId');
         $pricey = Input::get('pricey');
+        foreach ($reservation->menu as $value) {
+
+            $total_price += $value->price; 
+        }
+        foreach ($reservation->item as $value) {
+           
+        }
 
         for($i=0; $i<count($qty); $i++)
         {
@@ -1771,15 +1773,14 @@ $total = 0;
         {
             if(count(Input::get('menu'.$index)) > 0)
             {
-
                 foreach(Input::get('menu'.$index) as $menu)
                 {
                     $reservation->menus()->attach($menu,['day' => $index]);
                     $price = Menu::find($menu);
                     $total_price += $price->price;
+
                 }
             }
-
             if(count(Input::get('package'.$index)) > 0)
             {
                 foreach (Input::get('package' . $index) as $package)
@@ -1788,13 +1789,15 @@ $total = 0;
                     {
                         $reservation->menus()->attach($fuckage->menu_id, ['day' => $index,'package' => $package]);
                     }
+
                     $price = Packages::find($package);
                     $package_price += $price->price;
                 }
             }
         }
         $reservation->net_total = ($total_price * $reservation->pax) + $package_price + $pricezs;
-        $reservation->save();
-        return Redirect::back();
+        if($reservation->save())return Redirect::back()->with('flash_message','Reservation has been saved!');
+        else return Redirect::back()->withErrors('Could not update reservation');
     }
+    
 }
