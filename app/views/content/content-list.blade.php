@@ -21,7 +21,8 @@
         <tr>
             <td><b>{{(strlen($content->title) >= 40 ? substr($content->title, 0,40)."..."  : $content->title)}}</b></td>
             <td><b>{{(strlen($content->content) >= 40 ? substr($content->content, 0,40)."..."  : $content->content)}}</b></td>
-            <td class="edit"><button  data-id="{{$content->id}}" data-value="{{$content->value}}" data-route="{{url('/misc/set-information/')}}"   class='btn-edit btn btn-block btn-primary'><i class="fa fa-edit"></i>Edit</button></td>
+          <!--  <td class="edit"><button  data-id="{{$content->id}}" data-value="{{$content->value}}" data-route="{{url('/misc/set-information/')}}"   class='btn-edit btn btn-block btn-primary'><i class="fa fa-edit"></i>Edit</button></td>
+        -->
         </tr>
         @endforeach
         </tbody>

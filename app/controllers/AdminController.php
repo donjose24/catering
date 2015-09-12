@@ -1704,32 +1704,24 @@ $total = 0;
         }
         return Redirect::back();
     }
-
     public function showPackage($id)
     {
          $package = Packages::find($id);
-
          return View::make('admin.showPackage', compact('package'));
     }
-
     public function maintenance()
     {
-        return View::make('admin.maintenance')
-            ->withMaintenance(Maintenance::paginate(15));
+        return View::make('admin.maintenance')->withMaintenance(Maintenance::paginate(15));
     }
-
     public function updateMaintenance($id)
     {
-        return View::make('admin.update_maintenance')
-            ->withMaintenance(Maintenance::find($id));
+        return View::make('admin.update_maintenance')->withMaintenance(Maintenance::find($id));
     }
-
     public function editMaintenance()
     {
         $maintenance = Maintenance::find(Input::get('id'));
         $maintenance->value = Input::get('value');
         $maintenance->save();
-
         return Redirect::action('AdminController@maintenance');
     }
     public function updateMenuReservation()
@@ -1799,6 +1791,7 @@ $total = 0;
         if($reservation->save())return Redirect::back()->with('flash_message','Reservation has been saved!');
         else return Redirect::back()->withErrors('Could not update reservation');
     }
+    //CONTENT START
     public function contents(){
         return View::make('content.content-list')->withContents(Content::all());
     }
@@ -1808,16 +1801,14 @@ $total = 0;
         $content = Content::create(Input::all());
         if($content->save())return Redirect::back()->with('flash_message' , 'Content successfully created');
         return Redirect::back()->withErrors('An error occured. Please contact server administrator');
-    
-       
     }
     public function createContent(){
         return View::make('content.create');
     }
     public function editContent($id = false){
-
         if($content = Content::find($id))
         return View::make('content.edit')->withContent($content);
         return Redirect::back()->withErrors('Content not found!');
     }
+    //CONTENT END
 }
