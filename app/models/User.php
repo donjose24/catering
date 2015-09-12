@@ -20,6 +20,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     ];
 
     protected $dates = ['deleted_at'];
+    protected $table = 'users';
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -27,7 +28,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-
+    protected $fillable = ['password'];
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
