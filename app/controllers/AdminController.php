@@ -1,9 +1,6 @@
 <?php
 
 class AdminController extends \BaseController {
-
-  
-
     public function SI_generate($id)
     {
         $reservation = Reservation::find($id);
@@ -340,17 +337,11 @@ class AdminController extends \BaseController {
     {
         $reservation = Reservation::find(Input::get('id'));
         $id = $reservation->id;
-
         if($reservation->status != 'Event End'){
             App::abort(404);
         }
-
-
-            $reservation->amount_paid = $reservation->amount_paid + Input::get('amount');
-
-            $reservation->save();
-
-
+        $reservation->amount_paid = $reservation->amount_paid + Input::get('amount');
+        $reservation->save();
         $date1 = new DateTime($reservation->reservation_start);
         $date2 = new DateTime($reservation->reservation_end);
         $date3 = new DateTime($reservation->date_request);
@@ -463,11 +454,9 @@ class AdminController extends \BaseController {
     {
         $additional = Broken::find(Input::get('item_id'));
         $additional->delete();
-
         $reservation = Reservation::find(Input::get('reservation_id'));
         $reservation->net_total = $reservation->net_total -  (Input::get('average_price') * (Input::get('quantity')));
         $reservation->save();
-
         return Redirect::back();
     }
 
@@ -479,7 +468,6 @@ class AdminController extends \BaseController {
         $additional->reservation_id = Input::get('reservation_id');
         $additional->quantity = Input::get('quantity');
         $additional->save();
-
         $reservation = Item::find(Input::get('item_id_get'));
         $reservation->total_quantity = $reservation->total_quantity + (Input::get('quantity'));
         $reservation->save();
@@ -488,7 +476,6 @@ class AdminController extends \BaseController {
 
     public function brokenAdditionalItem()
     {
-
         $additional = new Broken;
         $additional->menu_id = Input::get('item_id_get');
         $additional->reservation_id = Input::get('reservation_id');
@@ -502,16 +489,18 @@ class AdminController extends \BaseController {
 
     public function returnReservation($id)
     {
-        $reservation = Reservation::find($id);
-        $item = Item::get();
-        return View::make('admin.return',compact('item','reservation'));
+        if( $reservation = Reservation::find($id)){
+            $item = Item::get();
+            return View::make('admin.return',compact('item','reservation'));
+        }return Redirect::back()->withErrors('Reservation could not be found!');
     }
 
     public function brokenReservation($id)
     {
-        $reservation = Reservation::find($id);
-        $item = Item::get();
-        return View::make('admin.broken',compact('item','reservation'));
+        if( $reservation = Reservation::find($id)){
+            $item = Item::get();
+            return View::make('admin.broken',compact('item','reservation'));
+        }return Redirect::back()->withErrors('Reservation could not be found!');
 
     }
 
