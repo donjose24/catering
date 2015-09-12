@@ -153,6 +153,9 @@
                            <li>
                                 <a href="{{action('AdminController@information')}}">Company Information</a>
                             </li>
+                            <li>
+                                <a href="{{action('AdminController@contents')}}">Contents & Announcements</a>
+                            </li>
 
                             <li>
                                 <a href="{{action('AdminController@termsncon')}}">Terms and Conditions</a>

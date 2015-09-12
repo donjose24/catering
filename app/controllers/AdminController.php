@@ -1799,5 +1799,25 @@ $total = 0;
         if($reservation->save())return Redirect::back()->with('flash_message','Reservation has been saved!');
         else return Redirect::back()->withErrors('Could not update reservation');
     }
+    public function contents(){
+        return View::make('content.content-list')->withContents(Content::all());
+    }
+    public function storeContent(){
+        $v = Validator::make(Input::all(),['title' => 'required|min:5' , 'content' => 'required|min:10']);
+        if($v->fails())return Redirect::back()->withErrors($v->messages())->withInput();
+        $content = Content::create(Input::all());
+        if($content->save())return Redirect::back()->with('flash_message' , 'Content successfully created');
+        return Redirect::back()->withErrors('An error occured. Please contact server administrator');
     
+       
+    }
+    public function createContent(){
+        return View::make('content.create');
+    }
+    public function editContent($id = false){
+
+        if($content = Content::find($id))
+        return View::make('content.edit')->withContent($content);
+        return Redirect::back()->withErrors('Content not found!');
+    }
 }

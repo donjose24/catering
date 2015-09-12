@@ -28,7 +28,7 @@ use SiTb;
 
 use Information;
 use Session;
-
+use Content;
 
 class ReservationsController extends \BaseController {
 
@@ -41,7 +41,7 @@ class ReservationsController extends \BaseController {
 
     public function home()
     {
-        return View::make('catering.home')->withCarousel(Carousel::get());
+        return View::make('catering.home')->withCarousel(Carousel::get())->withContent(Content::all());
     }
 
     public function homeMenu()
