@@ -23,7 +23,7 @@
 			<td>{{$contacts->name}}</td>
 			<td>{{$contacts->title}}</td>
 			<td>{{$contacts->description}}</td>
-			<td><a href="{{action('AdminController@deleteMessage',$contacts->id)}}" class="btn btn-danger btn-sm"><span class="glyphicon glyphicons-remove"></span> Delete</a></td>
+			<td><a href="{{action('AdminController@deleteMessage',$contacts->id)}}" class="btn btn-danger btn-sm"><span class="fa fa-trash-o"></span> Delete</a></td>
 			</tr>
 		@endforeach
 		</tbody>

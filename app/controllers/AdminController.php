@@ -2,6 +2,7 @@
 
 class AdminController extends \BaseController {
 
+  
 
     public function SI_generate($id)
     {
@@ -33,19 +34,19 @@ class AdminController extends \BaseController {
         $fpdf->AddPage();
         $fpdf->SetFont('Arial','B',16);
         $fpdf->AliasNbPages();
-        $fpdf->Cell(40,10,'REY AND CHRIS CATERING EQUIPMENT RENTALS',0,1);
+        $fpdf->Cell(40,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Address:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(30,7,'Antipolo and Baras Rizal Antipolo City',0,1);
+        $fpdf->Cell(30,7,Information::where('keyname' , '=' , 'address')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Contact:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(30,7,'(632) 400-7629 / (0922) 841-4138',0,1);
+        $fpdf->Cell(30,7,Information::where('keyname' , '=' , 'phonenumber')->first()->value.'/'.Information::where('keyname' , '=' , 'mobile')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Email:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(30,7,'chris_caina@yahoo.com / reyandchris@gmail.com',0,1);
+        $fpdf->Cell(30,7,Information::where('keyname' , '=' , 'email')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(0,40,'                                       SALES INVOICE',0,1);
         $fpdf->SetFont('Arial','B',13);
@@ -365,19 +366,19 @@ class AdminController extends \BaseController {
         $fpdf->AddPage();
         $fpdf->SetFont('Arial','B',16);
         $fpdf->AliasNbPages();
-        $fpdf->Cell(40,10,'REY AND CHRIS CATERING EQUIPMENT RENTALS',0,1);
+        $fpdf->Cell(40,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Address:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(30,7,'Antipolo and Baras Rizal Antipolo City',0,1);
+        $fpdf->Cell(30,7,Information::where('keyname' , '=' , 'address')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Contact:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(30,7,'(632) 400-7629 / (0922) 841-4138',0,1);
+        $fpdf->Cell(30,7,Information::where('keyname' , '=' , 'phonenumber')->first()->value.'/'.Information::where('keyname' , '=' , 'mobile')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Email:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(30,7,'chris_caina@yahoo.com / reyandchris@gmail.com',0,1);
+        $fpdf->Cell(30,7,Information::where('keyname' , '=' , 'email')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(0,40,'                                       OFFICIAL RECEIPT',0,1);
         $fpdf->SetFont('Arial','B',13);
@@ -493,7 +494,6 @@ class AdminController extends \BaseController {
         $additional->reservation_id = Input::get('reservation_id');
         $additional->quantity = Input::get('quantity');
         $additional->save();
-
         $reservation = Reservation::find(Input::get('reservation_id'));
         $reservation->net_total = $reservation->net_total +  (Input::get('item_price') * (Input::get('quantity')));
         $reservation->save();
@@ -616,10 +616,10 @@ class AdminController extends \BaseController {
         $fpdf->AddPage('L');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
-        $fpdf->Cell(20,10,'Catering and Equipment Rentals Reservation',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1,'C');
         $fpdf->Cell(130);
         $fpdf->SetFont('Arial','',14);
-        $fpdf->Cell(20,10,'Business Adddress',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'address')->first()->value,0,1,'C');
         $header = array('ID','Model', 'Dimension', 'Price', 'Reservation','Quantity');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
@@ -679,10 +679,10 @@ class AdminController extends \BaseController {
         $fpdf->AddPage('L');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
-        $fpdf->Cell(20,10,'Catering and Equipment Rentals Reservation',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1,'C');
         $fpdf->Cell(130);
         $fpdf->SetFont('Arial','',14);
-        $fpdf->Cell(20,10,'Business Adddress',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'address')->first()->value,0,1,'C');
         $header = array('ID','Model', 'Dimension', 'Price', 'Reservation','Quantity');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
@@ -742,10 +742,10 @@ class AdminController extends \BaseController {
         $fpdf->AddPage('L');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
-        $fpdf->Cell(20,10,'Catering and Equipment Rentals Reservation',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1,'C');
         $fpdf->Cell(130);
         $fpdf->SetFont('Arial','',14);
-        $fpdf->Cell(20,10,'Business Adddress',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'address')->first()->value,0,1,'C');
         $header = array('ID','Model', 'Dimension', 'Price', 'Quantity','Allocated');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
@@ -845,10 +845,10 @@ class AdminController extends \BaseController {
         $fpdf->AddPage('L');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
-        $fpdf->Cell(20,10,'Catering and Equipment Rentals Reservation',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1,'C');
         $fpdf->Cell(130);
         $fpdf->SetFont('Arial','',14);
-        $fpdf->Cell(20,10,'Business Adddress',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'address')->first()->value,0,1,'C');
         $header = array('ID', 'Date', 'Pax', 'Status','Amount', 'Payment Method', 'Duration');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
@@ -917,10 +917,10 @@ class AdminController extends \BaseController {
         $fpdf->AddPage('L');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
-        $fpdf->Cell(20,10,'Catering and Equipment Rentals Reservation',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1,'C');
         $fpdf->Cell(130);
         $fpdf->SetFont('Arial','',14);
-        $fpdf->Cell(20,10,'Business Adddress',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'address')->first()->value,0,1,'C');
         $header = array('ID', 'Date', 'Pax', 'Status','Amount', 'Payment Method', 'Duration');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
@@ -992,10 +992,10 @@ class AdminController extends \BaseController {
         $fpdf->AddPage('L');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
-        $fpdf->Cell(20,10,'Catering and Equipment Rentals Reservation',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1,'C');
         $fpdf->Cell(130);
         $fpdf->SetFont('Arial','',14);
-        $fpdf->Cell(20,10,'Business Adddress',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'address')->first()->value,0,1,'C');
         $header = array('ID', 'Date', 'Pax', 'Status','Amount', 'Payment Method', 'Duration');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);

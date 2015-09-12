@@ -18,7 +18,11 @@
         {{HTML::style('assets/css/custom.css')}}
         {{HTML::style('http://fonts.googleapis.com/css?family=Open+Sans')}}
         {{HTML::style('addasset/css/sweetalert.css')}}
-
+<style>
+.blur{
+  -webkit-filter: blur(5px); -moz-filter: blur(5px); -o-filter: blur(5px); -ms-filter: blur(5px); filter: blur(5px);
+}
+</style>
 </head>
 <body>
 @yield('modal')
@@ -50,10 +54,14 @@
                 </button>
                 <a class="navbar-brand" href="index.html">Binary admin</a> 
             </div>
-  <div style="color: white;
-padding: 15px 50px 5px 50px;
-float: right;
-font-size: 16px;">  <a href="/" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+  <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;">
+      <a href="{{action('AdminController@contact')}}" class="btn btn-danger square-btn-adjust"><span class="badge">{{Contact::all()->count()}}</span> <i class="fa fa-inbox"></i> </a> 
+      <a href="#" class="btn btn-danger square-btn-adjust" id="warning" data-div="#div-warning"><span class="badge">
+      {{Item::whereRaw('total_quantity <= alert_quantity')->count()}}
+      </span> <i class="fa fa-warning"></i> </a> 
+      <a href="/" class="btn btn-danger square-btn-adjust"><i class='fa fa-sign-out'></i> Logout</a>
+    </div>
+  
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -65,13 +73,10 @@ font-size: 16px;">  <a href="/" class="btn btn-danger square-btn-adjust">Logout<
                 
                     
                     <li>
-                        <a class="active-menu"  href="{{action('AdminController@index')}}"><i class="fa fa-dashboard fa-3x"></i> Reservation</a>
+                        <a class="active-menu" class='reservations' href="{{action('AdminController@index')}}"><i class="fa fa-book fa-3x"></i> Reservation</a>
                     </li>
                     <li>
-                            <a class="menu"  href="{{action('AdminController@contact')}}"><i class="fa fa-mail-reply-all fa-3x"></i> Messages</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap fa-3x"></i> Catering<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-sitemap fa-3x" class='catering'></i> Catering<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="{{action('AdminController@menu')}}">Menu</a>
@@ -95,7 +100,7 @@ font-size: 16px;">  <a href="/" class="btn btn-danger square-btn-adjust">Logout<
                       </li>
 
                         <li>
-                        <a href="#"><i class="fa fa-database fa-3x"></i> Inventory<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-database fa-3x" class='inventory'></i> Inventory<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                            <li>
                                 <a href="#">Purchases <span class="fa arrow"></span></a>
@@ -142,7 +147,7 @@ font-size: 16px;">  <a href="/" class="btn btn-danger square-btn-adjust">Logout<
                         </ul>
                       </li>
                       <li>
-                        <a href="#"><i class="fa fa-pencil fa-3x"></i> Miscellaneous<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-pencil fa-3x" class='misc'></i> Miscellaneous<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
 
                            <li>
@@ -207,7 +212,32 @@ font-size: 16px;">  <a href="/" class="btn btn-danger square-btn-adjust">Logout<
         </script>
 
 <div id="page-wrapper">
+  <div class="row">
+      <div class="col-md-12"  id="div-warning" class="" style='position:fixed;display:none;right:0;z-index:9999;'>
+        <div class="alert alert-danger">
+          <table class="table table-hover" width=80%>
+            <thead>
+              <th>ID</th>
+              <th>Model_number</th>
+              <th>Total Quantity</th>
+            </thead>
+          <?php 
+            $itemWarning =Item::whereRaw('total_quantity <= alert_quantity')->get();
+            foreach ($itemWarning as $key => $value) {
+              echo '<tr>';
+              echo '<td>'.$value['id'].'</td>';
+              echo '<td>'.$value['model_number'].'</td>';
+              echo '<td>'.$value['total_quantity'].'</td>';
+              echo '</tr>';
+            }
+          ?>
+          </table>
+        </div>
+
+      </div>
+    </div>
 	<div id="page-inner">
+    
 		<div class="row">
 			<div class="col-md-12">
 				<h2>@yield('title')</h2>
@@ -249,6 +279,7 @@ font-size: 16px;">  <a href="/" class="btn btn-danger square-btn-adjust">Logout<
         <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('bower_components/datepicker/js/bootstrap-datepicker.js') }}"></script>
         <script src="{{asset('addasset/js/sweetalert.min.js')}}"></script>
+        <script src="{{asset('addasset/js/link.js')}}"></script>
         @if($errors)
         
         <script type="text/javascript">
@@ -265,6 +296,18 @@ font-size: 16px;">  <a href="/" class="btn btn-danger square-btn-adjust">Logout<
         swal("Success!",xx ,"success");
         </script>
         @endif
+        </script>
+        <script type="text/javascript">
+      
+        $('#warning').click(function(){
+          
+          swal({   title: "<small>These items have reached its alert quantity</small>",  
+           text: $('#div-warning').html(), 
+             html: true,
+             type : 'warning'});
+          //$('#div-warning').fadeToggle();
+          
+        });
         </script>
         @yield('scripts')
  </body>

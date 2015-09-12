@@ -16,7 +16,7 @@ class Item extends Eloquent
         'alert_quantity'            => 'required|integer',
         'itemtype_id'               => 'required|max:255',
     ];
-
+    protected $table = 'items';
     protected $dates = ['deleted_at'];
 
     protected $fillable = ['uom', 'model_number', 'description', 'average_price', 'alert_quantity', 'dimensions', 'total_quantity', 'alert_quantity', 'itemtype_id', 'allocated_quantity'];

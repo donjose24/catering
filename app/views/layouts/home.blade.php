@@ -20,10 +20,7 @@
         {{HTML::style('http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800')}}
         {{HTML::style('homepage/css/leaflet.css')}}
         {{HTML::style('homepage/css/main.css')}}
-
         {{HTML::style('addasset/css/sweetalert.css')}}
-        
-
         <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
         <script src="{{asset('homepage/js/jquery.sequence-min.js')}}"></script>
         
