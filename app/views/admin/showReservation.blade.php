@@ -7,35 +7,23 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                              <h4 class="modal-title" style = "text-align: center"><b>UPDATE RESERVATION</b></h4>
                         </div>
-                     {{Form::open(['action' => 'AdminController@updateMenuReservation'])}}
+                     {{Form::open(['action' => 'AdminController@updateMenuReservation' , 'method' => 'post'])}}
                      {{Form::hidden('id',$reservation->id)}}
                     <div class="modal-body">
                         <div class="te">
                         <div role="tabpanel">
                             <table class="table table-striped">
-
-                                 @foreach($item as $items)
-                                     @foreach($reservation->items as $items2)
-                                         @if($items->model_number == $items2->model_number)
-                                         <tr>
-                                              <input type="hidden" name="invId[]" value="{{$items->id}}">
-                                              <input type="hidden" name="pricey[]" value="{{$items->average_price}}">
-                                              <td><input type="text" name="model[]" value = "{{$items->model_number}}" class="form-control" disabled></td>
-                                              <td>{{Form::number('quantity[]',$items2->pivot->qty,['class' => 'form-control', 'placeholder' => 'Qty'])}}</td>
-                                         </tr>
-                                         @else
-                                        <tr>
-                                              <input type="hidden" name="invId[]" value="{{$items->id}}">
-                                              <input type="hidden" name="pricey[]" value="{{$items->average_price}}">
-                                              <td><input type="text" name="model[]" value = "{{$items->model_number}}" class="form-control" disabled></td>
-                                              <td>{{Form::number('quantity[]',0,['class' => 'form-control', 'placeholder' => 'Qty'])}}</td>
-                                         </tr>
-                                         @endif
-                                     @endforeach
-                                 @endforeach
+                                @foreach($reservation->items as $items)
+                                     
+                                     <tr>
+                                          <input type="hidden" name="invId[]" value="{{$items->id}}">
+                                          <input type="hidden" name="pricey[]" value="{{$items->average_price}}">
+                                          <td><input type="text" name="model[]" value ="{{$items->model_number}}" class="form-control" disabled></td>
+                                          <td>{{Form::number('quantity[]',$items->pivot->qty,['class' => 'form-control', 'placeholder' => 'Qty'])}}</td>
+                                     </tr>
+                                @endforeach
                             </table>
-
-<hr>
+                        <hr>
                             <ul class="nav nav-tabs" role="tablist" id="myTab">
                                @for($x=1; $x<=$diff; $x++)
                                     <li role="presentation"><a href="#day{{$x}}" aria-controls="day{{$x}}" role="tab" data-toggle="tab">Day {{$x}}</a></li>

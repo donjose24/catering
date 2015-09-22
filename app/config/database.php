@@ -58,7 +58,7 @@ return array(
 			'database'  => 'catering',
 			'username'  => 'root',
 
-			'password'  => '',
+			'password'  => 'unix',
 
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',

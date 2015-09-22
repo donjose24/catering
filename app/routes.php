@@ -17,6 +17,13 @@ Route::post('/contact',['uses'=> 'catering\ReservationsController@contactStore' 
 Route::get('/misc/list-information/' , ['uses' => 'AdminController@information' , 'as' => 'misc.list']);
 Route::get('/misc/set-information/{id}/{value}' , ['uses' => 'AdminController@editInformation' , 'as' => 'misc.edit']);
 
+Route::get('/misc/content/' , ['uses' => 'AdminController@contents' , 'as' => 'misc.content.list']);
+Route::get('/misc/content/create/' , ['uses' => 'AdminController@createContent' , 'as' => 'misc.content.create']);
+Route::get('/misc/content/edit/{id}' , ['uses' => 'AdminController@editContent' , 'as' => 'misc.content.edit']);
+Route::post('/misc/content/save' , ['uses' => 'AdminController@storeContent' , 'as' => 'misc.content.save']);
+
+
+Route::get('/login' , ['uses' => 'AuthController@getLogin' , 'as' => 'default.login']);
 
 Route::get('/sign-in', 'AuthController@getSignIn');
 Route::post('/sign-in', 'AuthController@postSignIn');

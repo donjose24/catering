@@ -59,41 +59,24 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-sm-6">
+                    <div class="col-md-12 col-sm-6">
                         <div class="in-press press-wired">
-                            <div>
-                                <h1 class="page-header">
-                                    Welcome to Catering
-                                </h1>
-                            </div>
-                            <div>
-                                <p> this is a busines that cater and can provide the equipments you needs for your event. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="service-wrapper">
-                            <div>
-                                <h3> Check Reservation Status </h3>
-                            </div>
-                            <hr>
-                            <div>
-
-                                {{Form::open(['url' => 'catering/reservation/check/reservation'])}}
-
-
-                                 {{Form::label('id','Reservation ID:')}}
-                                 {{Form::text('id','',['class' => 'form-control','required'])}}
-
-                            </div>
-                            <div>
-
-                                <input class="btn btn-block" type="submit" value="Submit">
-
-                                {{Form::close()}}
+                           <div class="col-md-12 col-sm-6">
+                                @foreach($content as $c)
+                                <div class="service-wrapper">
+                                    <!-- start content-->
+                                    <div>
+                                        <p><small class="pull-right badge">{{$c->created_at}}</small></p>
+                                        <h3 class="page-header"> {{$c->title}}</h3>
+                                        <p>{{$c->content}}</p>
+                                    </div>
+                                    <!--end content-->
+                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

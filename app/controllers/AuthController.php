@@ -9,17 +9,23 @@ class AuthController extends BaseController
 
     public function getSignIn()
     {
+        //remove this on publish
+
         return View::make('auth.sign-in');
     }
 
+    public function getLogin(){
+        
+        echo 'Update password of user karol to karol ====   ($2y$10$o6qMW7ba1GRAdjytu24.3egfQIKC1mokH6IKs/3xar0VOF.vxLKRe)';
+        return View::make('auth.admin-sign-in');
+    }
     public function postSignIn()
     {
-        if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
 
-            return Redirect::intended('/');
-        } else {
-            return Redirect::action('AuthController@getSignIn');
-        }
+        $result = Auth::attempt(['email' => Input::get('email') , 'password' => Input::get('password') ]);
+        if($result) return Redirect::action('AdminController@index');
+        return Redirect::back()->withErrors('Invalid Credentials');
+        
     }
 
     public function getSignOut()

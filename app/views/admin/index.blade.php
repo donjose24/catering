@@ -5,7 +5,7 @@
 @stop
 
 @section('body')
-<a href="{{action('AdminController@addReservation')}}" class="pull-right btn btn-success btn-lg"><span class="glyphicon glyphicon-pencil"></span> Add Reservation</a>
+<a href="{{action('AdminController@addReservation')}}" class="pull-right btn btn-success btn-lg"><span class="fa fa-plus"></span> Add Reservation</a>
 
 <table class="table table-stripe">
 		<thead>
@@ -17,7 +17,7 @@
 			<th>Contact No.</th>
 			<th>Status</th>
 			<th>Action</th>
-		</tr>
+		</tr>	
 		</thead>
 		<tbody>
 		@foreach($reservation as $reservations)

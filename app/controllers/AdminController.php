@@ -2,6 +2,7 @@
 
 class AdminController extends \BaseController {
 
+  
 
     public function SI_generate($id)
     {
@@ -33,19 +34,19 @@ class AdminController extends \BaseController {
         $fpdf->AddPage();
         $fpdf->SetFont('Arial','B',16);
         $fpdf->AliasNbPages();
-        $fpdf->Cell(40,10,'REY AND CHRIS CATERING EQUIPMENT RENTALS',0,1);
+        $fpdf->Cell(40,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Address:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(30,7,'Antipolo and Baras Rizal Antipolo City',0,1);
+        $fpdf->Cell(30,7,Information::where('keyname' , '=' , 'address')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Contact:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(30,7,'(632) 400-7629 / (0922) 841-4138',0,1);
+        $fpdf->Cell(30,7,Information::where('keyname' , '=' , 'phonenumber')->first()->value.'/'.Information::where('keyname' , '=' , 'mobile')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Email:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(30,7,'chris_caina@yahoo.com / reyandchris@gmail.com',0,1);
+        $fpdf->Cell(30,7,Information::where('keyname' , '=' , 'email')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(0,40,'                                       SALES INVOICE',0,1);
         $fpdf->SetFont('Arial','B',13);
@@ -365,19 +366,19 @@ class AdminController extends \BaseController {
         $fpdf->AddPage();
         $fpdf->SetFont('Arial','B',16);
         $fpdf->AliasNbPages();
-        $fpdf->Cell(40,10,'REY AND CHRIS CATERING EQUIPMENT RENTALS',0,1);
+        $fpdf->Cell(40,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Address:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(30,7,'Antipolo and Baras Rizal Antipolo City',0,1);
+        $fpdf->Cell(30,7,Information::where('keyname' , '=' , 'address')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Contact:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(30,7,'(632) 400-7629 / (0922) 841-4138',0,1);
+        $fpdf->Cell(30,7,Information::where('keyname' , '=' , 'phonenumber')->first()->value.'/'.Information::where('keyname' , '=' , 'mobile')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Email:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(30,7,'chris_caina@yahoo.com / reyandchris@gmail.com',0,1);
+        $fpdf->Cell(30,7,Information::where('keyname' , '=' , 'email')->first()->value,0,1);
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(0,40,'                                       OFFICIAL RECEIPT',0,1);
         $fpdf->SetFont('Arial','B',13);
@@ -493,7 +494,6 @@ class AdminController extends \BaseController {
         $additional->reservation_id = Input::get('reservation_id');
         $additional->quantity = Input::get('quantity');
         $additional->save();
-
         $reservation = Reservation::find(Input::get('reservation_id'));
         $reservation->net_total = $reservation->net_total +  (Input::get('item_price') * (Input::get('quantity')));
         $reservation->save();
@@ -607,9 +607,6 @@ class AdminController extends \BaseController {
         {
             $res = Broken::get();
         }*/
-
-
-
         return $res;
     }
 
@@ -619,10 +616,10 @@ class AdminController extends \BaseController {
         $fpdf->AddPage('L');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
-        $fpdf->Cell(20,10,'Catering and Equipment Rentals Reservation',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1,'C');
         $fpdf->Cell(130);
         $fpdf->SetFont('Arial','',14);
-        $fpdf->Cell(20,10,'Business Adddress',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'address')->first()->value,0,1,'C');
         $header = array('ID','Model', 'Dimension', 'Price', 'Reservation','Quantity');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
@@ -682,10 +679,10 @@ class AdminController extends \BaseController {
         $fpdf->AddPage('L');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
-        $fpdf->Cell(20,10,'Catering and Equipment Rentals Reservation',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1,'C');
         $fpdf->Cell(130);
         $fpdf->SetFont('Arial','',14);
-        $fpdf->Cell(20,10,'Business Adddress',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'address')->first()->value,0,1,'C');
         $header = array('ID','Model', 'Dimension', 'Price', 'Reservation','Quantity');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
@@ -745,10 +742,10 @@ class AdminController extends \BaseController {
         $fpdf->AddPage('L');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
-        $fpdf->Cell(20,10,'Catering and Equipment Rentals Reservation',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1,'C');
         $fpdf->Cell(130);
         $fpdf->SetFont('Arial','',14);
-        $fpdf->Cell(20,10,'Business Adddress',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'address')->first()->value,0,1,'C');
         $header = array('ID','Model', 'Dimension', 'Price', 'Quantity','Allocated');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
@@ -848,10 +845,10 @@ class AdminController extends \BaseController {
         $fpdf->AddPage('L');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
-        $fpdf->Cell(20,10,'Catering and Equipment Rentals Reservation',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1,'C');
         $fpdf->Cell(130);
         $fpdf->SetFont('Arial','',14);
-        $fpdf->Cell(20,10,'Business Adddress',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'address')->first()->value,0,1,'C');
         $header = array('ID', 'Date', 'Pax', 'Status','Amount', 'Payment Method', 'Duration');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
@@ -920,10 +917,10 @@ class AdminController extends \BaseController {
         $fpdf->AddPage('L');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
-        $fpdf->Cell(20,10,'Catering and Equipment Rentals Reservation',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1,'C');
         $fpdf->Cell(130);
         $fpdf->SetFont('Arial','',14);
-        $fpdf->Cell(20,10,'Business Adddress',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'address')->first()->value,0,1,'C');
         $header = array('ID', 'Date', 'Pax', 'Status','Amount', 'Payment Method', 'Duration');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
@@ -995,10 +992,10 @@ class AdminController extends \BaseController {
         $fpdf->AddPage('L');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
-        $fpdf->Cell(20,10,'Catering and Equipment Rentals Reservation',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'name')->first()->value,0,1,'C');
         $fpdf->Cell(130);
         $fpdf->SetFont('Arial','',14);
-        $fpdf->Cell(20,10,'Business Adddress',0,1,'C');
+        $fpdf->Cell(20,10,Information::where('keyname' , '=' , 'address')->first()->value,0,1,'C');
         $header = array('ID', 'Date', 'Pax', 'Status','Amount', 'Payment Method', 'Duration');
         $fpdf->SetFont('Arial','B',16);
         $fpdf->Cell(130);
@@ -1446,6 +1443,7 @@ $total = 0;
     public function showReservation($id)
     {
         $reservation = Reservation::find($id);
+        if(!$reservation)return Redirect::back()->withErrors('Could not find reservation.');
         $date1 = new DateTime($reservation->reservation_start);
         $date2 = new DateTime($reservation->reservation_end);
         $date3 = new DateTime($reservation->date_request);
@@ -1465,9 +1463,7 @@ $total = 0;
     public function updateStatus()
     {
         $input = Input::get('status');
-
         $id = Input::get('ids');
-
         $reservation = Reservation::find($id);
         $reservation->status = $input;
         $reservation->save();
@@ -1655,10 +1651,8 @@ $total = 0;
             $tmp = substr($chars, $num, 1);
             $pass = $pass . $tmp;
             $i++;
-
         }
         $finalcode=$pass;
-
         $reservation = Reservation::find($id);
         if($reservation->payment_mode == 'Full Payment')
             $reservation->status = 'Approved';
@@ -1710,38 +1704,33 @@ $total = 0;
         }
         return Redirect::back();
     }
-
     public function showPackage($id)
     {
          $package = Packages::find($id);
-
          return View::make('admin.showPackage', compact('package'));
     }
-
     public function maintenance()
     {
-        return View::make('admin.maintenance')
-            ->withMaintenance(Maintenance::paginate(15));
+        return View::make('admin.maintenance')->withMaintenance(Maintenance::paginate(15));
     }
-
     public function updateMaintenance($id)
     {
-        return View::make('admin.update_maintenance')
-            ->withMaintenance(Maintenance::find($id));
+        return View::make('admin.update_maintenance')->withMaintenance(Maintenance::find($id));
     }
-
     public function editMaintenance()
     {
         $maintenance = Maintenance::find(Input::get('id'));
         $maintenance->value = Input::get('value');
         $maintenance->save();
-
         return Redirect::action('AdminController@maintenance');
     }
     public function updateMenuReservation()
     {
 
         $reservation = Reservation::find(Input::get('id'));
+       if(!$reservation)return Redirect::back()->withErrors('Could not find reservation.');
+        //$reservation->menus()->detach();
+        //$reservation->items()->detach();
         $date1 = new DateTime($reservation->reservation_start);
         $date2 = new DateTime($reservation->reservation_end);
         $diff = $date2->diff($date1)->format("%a");
@@ -1756,6 +1745,13 @@ $total = 0;
         $model = Input::get('model');
         $invid = Input::get('invId');
         $pricey = Input::get('pricey');
+        foreach ($reservation->menu as $value) {
+
+            $total_price += $value->price; 
+        }
+        foreach ($reservation->item as $value) {
+           
+        }
 
         for($i=0; $i<count($qty); $i++)
         {
@@ -1769,15 +1765,14 @@ $total = 0;
         {
             if(count(Input::get('menu'.$index)) > 0)
             {
-
                 foreach(Input::get('menu'.$index) as $menu)
                 {
                     $reservation->menus()->attach($menu,['day' => $index]);
                     $price = Menu::find($menu);
                     $total_price += $price->price;
+
                 }
             }
-
             if(count(Input::get('package'.$index)) > 0)
             {
                 foreach (Input::get('package' . $index) as $package)
@@ -1786,13 +1781,34 @@ $total = 0;
                     {
                         $reservation->menus()->attach($fuckage->menu_id, ['day' => $index,'package' => $package]);
                     }
+
                     $price = Packages::find($package);
                     $package_price += $price->price;
                 }
             }
         }
         $reservation->net_total = ($total_price * $reservation->pax) + $package_price + $pricezs;
-        $reservation->save();
-        return Redirect::back();
+        if($reservation->save())return Redirect::back()->with('flash_message','Reservation has been saved!');
+        else return Redirect::back()->withErrors('Could not update reservation');
     }
+    //CONTENT START
+    public function contents(){
+        return View::make('content.content-list')->withContents(Content::all());
+    }
+    public function storeContent(){
+        $v = Validator::make(Input::all(),['title' => 'required|min:5' , 'content' => 'required|min:10']);
+        if($v->fails())return Redirect::back()->withErrors($v->messages())->withInput();
+        $content = Content::create(Input::all());
+        if($content->save())return Redirect::back()->with('flash_message' , 'Content successfully created');
+        return Redirect::back()->withErrors('An error occured. Please contact server administrator');
+    }
+    public function createContent(){
+        return View::make('content.create');
+    }
+    public function editContent($id = false){
+        if($content = Content::find($id))
+        return View::make('content.edit')->withContent($content);
+        return Redirect::back()->withErrors('Content not found!');
+    }
+    //CONTENT END
 }
