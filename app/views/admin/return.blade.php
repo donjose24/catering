@@ -1,7 +1,6 @@
 @extends ('layouts.admin')
 
 @section ('body')
-
     <div class='row'>
       <div class="form-group col-md-8">
         {{ Form::label('id', 'Reservation #:') }}
@@ -24,7 +23,6 @@
         {{ Form::text('supplier_tel', $reservation->contact, ['class' => 'form-control', 'disabled' => 'disabled']) }}
       </div>
     </div>
-
     <div class='row'>
       <div class="form-group col-md-8">
         {{ Form::label('supplier_address', 'Motif') }}
@@ -37,9 +35,7 @@
       </div>
     </div>
     <hr>
-
 <hr >
-
 {{ Form::open(['action' => ['AdminController@returnAdditionalItem'], 'files' => true, 'role' => 'form']) }}
     {{ Form::hidden('reservation_id', $reservation->id ) }}
     <div class="row">
@@ -112,22 +108,15 @@
   </table>
 
 <script>
-    $('#item-id')
-    .change(function() {
-
-      $.post(
-        "{{ url ('menu/getPrice') }}",
+    $('#item-id').change(function() {
+      $.post("{{ url ('menu/getPrice') }}",
         { option: $(this).val() },
         function (data) {
-
           $('#price').val(data.price);
-
         });
     });
 
-    $('#item-id-get')
-    .change(function() {
-
+    $('#item-id-get').change(function() {
       $.post(
         "{{ url ('item/getPrice') }}",
         { option: $(this).val() },
