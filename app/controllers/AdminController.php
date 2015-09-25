@@ -336,6 +336,8 @@ class AdminController extends \BaseController {
     public function payAmount()
     {
         $reservation = Reservation::find(Input::get('id'));
+
+         if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         $id = $reservation->id;
         if($reservation->status != 'Event End'){
             App::abort(404);
@@ -440,6 +442,8 @@ class AdminController extends \BaseController {
     {
 
         $additional = Returns::find(Input::get('item_id'));
+
+         if(!$additional)return Redirect::back()->withErrors('Could not find additional');
         #dd(Input::get('item_id'));
         $additional->delete();
 
@@ -453,6 +457,8 @@ class AdminController extends \BaseController {
     public function detachBrokenItem()
     {
         $additional = Broken::find(Input::get('item_id'));
+
+         if(!$additional)return Redirect::back()->withErrors('Could not find additional');
         $additional->delete();
         $reservation = Reservation::find(Input::get('reservation_id'));
         $reservation->net_total = $reservation->net_total -  (Input::get('average_price') * (Input::get('quantity')));
@@ -561,6 +567,8 @@ class AdminController extends \BaseController {
     public function additionalReservation($id)
     {
         $reservation = Reservation::find($id);
+
+         if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         $menu = Menu::get();
         $item = Item::get();
         return View::make('admin.additional',compact('item','menu','reservation'));
@@ -1051,6 +1059,7 @@ $total = 0;
     {
         $menu = Carousel::find($id);
 
+         if(!$menu)return Redirect::back()->withErrors('Could not find carousel');
         $menu->delete();
 
         return Redirect::back();
@@ -1114,6 +1123,8 @@ $total = 0;
     public function deleteCarousel($id)
     {
         $menu = Carousel::find($id);
+
+         if(!$menu)return Redirect::back()->withErrors('Could not find carousel');
         $menu->img = '';
         $menu->save();
 
@@ -1139,6 +1150,7 @@ $total = 0;
     {
         $con = Condition::where('number','=',Input::get('number'))->first();
 
+         if(!$con)return Redirect::back()->withErrors('Could not find Term');
             if($con->id != Input::get('id')){
                 return View::make('admin.viewTerm')->withTerm(Condition::find(Input::get('id')))
                     ->withWarning('Number exist in Terms and Conditions, please update or delete the other to proceed');
@@ -1239,6 +1251,8 @@ $total = 0;
     {
 
         $reservation = Reservation::find(Input::get('id'));
+
+         if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         $date1 = new DateTime($reservation->reservation_start);
         $date2 = new DateTime($reservation->reservation_end);
         $diff = $date2->diff($date1)->format("%a");
@@ -1298,6 +1312,8 @@ $total = 0;
     public function attachPayment()
     {
         $reservation = Reservation::find(Input::get('id'));
+
+         if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         $reservation->fill(Input::all());
         $reservation->save();
         $date1 = new DateTime($reservation->reservation_start);
@@ -1342,18 +1358,25 @@ $total = 0;
     public function deleteTerm($id)
     {
         $con = Condition::find($id);
+
+         if(!$con)return Redirect::back()->withErrors('Could not find Condition');
         $con->delete();
         return Redirect::back();
     }
 
     public function updateTerm($id)
     {
+        if($term = Condition::find($id))
         return View::make('admin.viewTerm')->withTerm(Condition::find($id));
+
+         return Redirect::back()->withErrors('Could not find reservation');
     }
 
     public function deleteMessage($id)
     {
         $c = Contact::find($id);
+
+         if(!$c)return Redirect::back()->withErrors('Could not find Contact');
         $c->delete();
         return Redirect::back();
     }
@@ -1454,6 +1477,8 @@ $total = 0;
         $input = Input::get('status');
         $id = Input::get('ids');
         $reservation = Reservation::find($id);
+
+         if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         $reservation->status = $input;
         $reservation->save();
         return Redirect::back();
@@ -1462,6 +1487,8 @@ $total = 0;
     public function deleteReservation($reservation)
     {
         $reservation = Reservation::find($reservation);
+
+         if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         $reservation->delete();
 
         $reservation = Reservation::paginate(5);
@@ -1478,6 +1505,8 @@ $total = 0;
     public function deletePicture($file)
     {
         $menu = Menu::find($file);
+
+         if(!$menu)return Redirect::back()->withErrors('Could not find Menu');
         $menu->image = '';
         $menu->save();
 
@@ -1515,6 +1544,8 @@ $total = 0;
     public function deleteMenu($id)
     {
         $menu = Menu::find($id);
+
+         if(!$menu)return Redirect::back()->withErrors('Could not find Menu');
         $menu->delete();
 
         return Redirect::back();
@@ -1524,6 +1555,7 @@ $total = 0;
     {
 
         $menu = Menu::find($id);
+         if(!$menu)return Redirect::back()->withErrors('Could not find Menu');
         return View::make('catering.getDetails', compact('menu'));
     }
 
@@ -1608,6 +1640,7 @@ $total = 0;
     {
 
         $category = Category::find($id);
+         if(!$category)return Redirect::back()->withErrors('Could not find category');
         $menu = Menu::where('scat' , '=', $category->name)->delete();
         $category->delete();
 
@@ -1618,6 +1651,7 @@ $total = 0;
     {
         $reservation = Reservation::where('status','=','Payment Pending')->get();
 
+         if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         return View::make('admin.messages',compact('reservation'));
     }
 
@@ -1659,6 +1693,8 @@ $total = 0;
     public function cancelReservation($id)
     {
         $reservation = Reservation::find($id);
+
+         if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         $reservation->delete();
         /*$reservation->status = 'Cancelled';
         $reservation->save();
@@ -1696,6 +1732,8 @@ $total = 0;
     public function showPackage($id)
     {
          $package = Packages::find($id);
+
+         if(!$package)return Redirect::back()->withErrors('Could not find package');
          return View::make('admin.showPackage', compact('package'));
     }
     public function maintenance()
@@ -1709,6 +1747,8 @@ $total = 0;
     public function editMaintenance()
     {
         $maintenance = Maintenance::find(Input::get('id'));
+        
+         if(!$maintenance)return Redirect::back()->withErrors('Could not find maintenance');
         $maintenance->value = Input::get('value');
         $maintenance->save();
         return Redirect::action('AdminController@maintenance');

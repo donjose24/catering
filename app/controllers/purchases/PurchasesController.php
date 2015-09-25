@@ -183,6 +183,8 @@ class PurchasesController extends \BaseController {
     public function detachItem()
     {
         $purchase = Purchase::findOrFail(Input::get('quotation_id'));
+        
+         if(!$purchase)return Redirect::back()->withErrors('Could not find purchase');
         $purchase->items()->detach(Input::get('item_id'));
         $purchase->grand_total -= Input::get('line_total');
         $purchase->net_total = $purchase->grand_total * (100-$purchase->discount)/100;

@@ -274,6 +274,11 @@
         swal("Success!",xx ,"success");
         </script>
         @endif
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('input:text').attr('required' , true);
+            });
+        </script>
 
 
 

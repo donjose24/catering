@@ -314,6 +314,7 @@ class ReservationsController extends \BaseController {
     public function checkReservation()
     {
         $reservation = Reservation::find(Input::get('id'));
+        if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         $date1 = new DateTime($reservation->reservation_start);
         $date2 = new DateTime($reservation->reservation_end);
         $diff = $date2->diff($date1)->format("%a");
@@ -334,6 +335,8 @@ class ReservationsController extends \BaseController {
     {
         
         $reservation = Reservation::find($id);
+
+        if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         $date1 = new DateTime($reservation->reservation_start);
         $date2 = new DateTime($reservation->reservation_end);
         $diff = $date2->diff($date1)->format("%a");
@@ -358,12 +361,15 @@ class ReservationsController extends \BaseController {
     public function getMenu($menu)
     {
         $menu = Menu::find($menu);
+
+        if(!$menu)return Redirect::back()->withErrors('Could not find menu');
         return View::make('catering.getOne',compact('menu'));
     }
 
     public function getPackage($package)
     {
         $package = Packages::find($package);
+        if(!$package)return Redirect::back()->withErrors('Could not find package');
         return View::make('catering.getOnePackage',compact('package'));
     }
 
@@ -441,6 +447,8 @@ class ReservationsController extends \BaseController {
     public function changeStatus()
     {
         $reservation = Reservation::find(Input::get('id'));
+
+        if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         $reservation->fill(Input::all());
         $reservation->status = Input::get('status');
         if($reservation->save())
@@ -453,6 +461,7 @@ class ReservationsController extends \BaseController {
     public function attachPdf($id)
     {
         $reservation = Reservation::find($id);
+         if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         $date1 = new DateTime($reservation->reservation_start);
         $date2 = new DateTime($reservation->reservation_end);
         $date3 = new DateTime($reservation->date_request);
@@ -606,6 +615,7 @@ class ReservationsController extends \BaseController {
     {
 
             $reservation = Reservation::find($id);
+             if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
             if($reservation->status != 'Event End'){
                 App::abort(404);
             }
@@ -819,6 +829,7 @@ class ReservationsController extends \BaseController {
                 if($item->category == 1)
                 {
                     $menu = Menu::find($item->menu_id);
+                    
                     $fpdf->Cell($w[0],6,"Day 1",'LR',0,'L',$fill);
                     $fpdf->Cell($w[1],6,$menu->name,'LR',0,'L',$fill);
                     $fpdf->Cell($w[2],6,$menu->price . " x " . $item->quantity,'LR',0,'C',$fill);

@@ -124,6 +124,7 @@ class ItemsController extends BaseController
     {
         $input = Input::get('option');
         $item = Item::find($input);
+         if(!$item)return Redirect::back()->withErrors('Could not find item');
         return Response::json($item);
     }
 }

@@ -312,6 +312,12 @@
           
         });
         </script>
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('input:text').attr('required' , true);
+            });
+        </script>
         @yield('scripts')
  </body>
 </html>
