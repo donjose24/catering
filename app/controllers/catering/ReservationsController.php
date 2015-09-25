@@ -184,7 +184,7 @@ class ReservationsController extends \BaseController {
         //DONT ALWAYS FVCKING CREATE NEW RESERVATION. fvcks up on refresh
         $reservation = Session::get('reservation') ? Session::get('reservation') : new Reservation;
         $reservation->fill(Input::all());
-        $reservation->status = 'Payment Pending';
+        $reservation->status = 'Half Paid';
         //if($reservation->save()){scrap this shit. only save on checkout process  .what if we left the page suddenly, the reservation will be saved with no effing item or fuckages in it.
         $id = Input::get('id');
         Session::put('reservation' , $reservation); //Just store the reservation to session. we'll save it later
