@@ -59,8 +59,8 @@ class PurchasesController extends \BaseController {
 	public function store()
 	{
         $purchase = new Purchase;
-        $purchase->fill(Input::all());
-        $purchase->po_number = time();
+		$purchase->fill(Input::all());
+        $purchase->po_number = $poid;
         $purchase->date;
         if ($purchase->id == null)
         {
@@ -71,7 +71,9 @@ class PurchasesController extends \BaseController {
         if ($purchase->save()) {
 
             $i = Purchase::find($purchase->id);
-            $i->po_number = $purchase->id;
+         	$poid = substr(Input::get('supplier_id'),0,3) . '-' . date('Y') . '-' . rand(10000, 99999);
+			$i->po_number = $poid;
+			$i->si_number = $poid . '-' . $purchase->id . '-'  . rand(10000, 99999);
             $i->save();
 
             return Redirect::action('Purchases\PurchasesController@show', $purchase->id)

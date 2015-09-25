@@ -16,7 +16,7 @@ class AuthController extends BaseController
 
     public function getLogin(){
         
-        echo 'Update password of user karol to karol ====   ($2y$10$o6qMW7ba1GRAdjytu24.3egfQIKC1mokH6IKs/3xar0VOF.vxLKRe)';
+//        echo 'Update password of user karol to karol ====   ($2y$10$o6qMW7ba1GRAdjytu24.3egfQIKC1mokH6IKs/3xar0VOF.vxLKRe)';
         return View::make('auth.admin-sign-in');
     }
     public function postSignIn()

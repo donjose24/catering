@@ -65,6 +65,7 @@ Route::post('/settings/agents/getOne', 'Settings\AgentsController@getOne');
 
 // QUOTATION CRUDS
 Route::model('quotation', 'Quotation');
+
 // LISTS ALL QUOTATIONS IN THE DRAFT AND APPROVED STATUSES
 Route::get('/sales/quotations', 'Sales\QuotationsController@index');
 Route::get('/sales/quotations/create', 'Sales\QuotationsController@create');
@@ -74,8 +75,10 @@ Route::get('/sales/quotations/{quotation}/edit', 'Sales\QuotationsController@edi
 Route::put('/sales/quotations/{quotation}', 'Sales\QuotationsController@update');
 Route::put('/sales/quotations/createSO/{quotation}', 'Sales\QuotationsController@createSO');
 Route::delete('/sales/quotations/{quotation}', 'Sales\QuotationsController@destroy');
+
 // LISTS ALL QUOTATIONS IN THE SALES ORDER STATUS WITH CORRESPONDING 'SO_NUMBER'
 Route::get('/sales/salesorders', 'Sales\QuotationsController@salesorders');
+
 // LISTS ALL SALES ORDERS THAT HAVE NOT YET BEEN FULLY PAID WITH THEIR CORRESPONDING BALANCES
 Route::get('/sales/receivables', 'Sales\QuotationsController@receivables');
 Route::get('/sales/fulfilled', 'Sales\QuotationsController@fulfilled');
