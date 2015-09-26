@@ -21,7 +21,7 @@
                 {{Form::open(['action' => 'AdminController@addMenu','files'=>true])}}
                 <h4><b>Name:</b> </h4> {{Form::text('name','',['class' => 'form-control'])}}
                 <h4><b>Description:</b></h4> {{Form::textarea('description','',['class' => 'form-control','style' => 'resize: none;'])}}
-                <h4><b>Price:</b> </h4>{{Form::number('price','',['class' => 'form-control'])}}
+				<h4><b>Price:</b> </h4>{{Form::number('price','',['class' => 'form-control', 'min' => '0', 'step' => 'any'])}}
                 <h4><b>Category:</b> </h4>
                 <select name="scat" class="form-control" id="selected-prize" required>
                     @foreach ($category as $categories)
