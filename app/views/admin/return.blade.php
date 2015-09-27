@@ -1,6 +1,7 @@
 @extends ('layouts.admin')
 
 @section ('body')
+	<h1>Returns</h1>
     <div class='row'>
       <div class="form-group col-md-8">
         {{ Form::label('id', 'Reservation #:') }}
@@ -106,25 +107,31 @@
   </table>
 
 <script>
-    $('#item-id').change(function() {
+	function getPrice() {
       $.post("{{ url ('menu/getPrice') }}",
-        { option: $(this).val() },
+        { option: $('#item-id').val() },
         function (data) {
           $('#price').val(data.price);
         });
-    });
-
-    $('#item-id-get').change(function() {
+    } 
+	
+	function getID() {
       $.post(
         "{{ url ('item/getPrice') }}",
-        { option: $(this).val() },
+        { option: $('#item-id-get').val() },
         function (data) {
-
           $('#item_price').val(data.average_price);
-
         });
-    });
+    }
 
+    $('#item-id').change(getPrice);
+
+    $('#item-id-get').change(getID);
+
+	$(document).ready(function(){
+		getPrice();
+		getID();
+	});
 </script>
 
 @stop
