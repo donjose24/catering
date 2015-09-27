@@ -42,11 +42,9 @@
       <div class="form-group col-md-3">
         {{ Form::label('item_id', 'Item') }}
         <select id="item-id-get" name="item_id_get" class="form-control">
-            <option value="">Select Item</option>
             @foreach($item as $items)
                 <option value="{{$items->id}}">{{ucwords($items->model_number)}} </option>
             @endforeach
-
         </select>
       </div>
       <div class="form-group col-md-2">

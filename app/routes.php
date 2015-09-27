@@ -248,7 +248,7 @@ Route::post('admin/reservation/update/additional/attachItem/item', 'AdminControl
 Route::post('menu/getPrice', 'AdminController@getPrice');
 Route::post('item/getPrice', 'AdminController@ItemGetPrice');
 Route::post('admin/return/item/detach', 'AdminController@detachReturnItem');
-#Route::post('admin/return/item/detach', 'AdminController@detachBrokenItem');
+Route::post('admin/return/item/detach', 'AdminController@detachBrokenItem');
 
 Route::get('admin/return/item/yeah/{id}','AdminController@returnReservation');
 Route::get('admin/return/item/broken/{id}','AdminController@brokenReservation');
