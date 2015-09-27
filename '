@@ -127,7 +127,7 @@
                 <br><br>
         @if($reservation->payment_method == '' || $reservation->payment_mode == '')
          {{ Form::open(['action' => ['catering\ReservationsController@attachPayment'], 'role' => 'form']) }}
-                {{ Form::hidden('id', $reservation->id) }}
+                {{ Form::hidden('id', $reservation->id)  }}
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Payment Mode:</label>
                     <div class="col-lg-3 ">

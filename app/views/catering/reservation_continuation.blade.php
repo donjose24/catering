@@ -9,7 +9,7 @@ $('body').on('hidden.bs.modal', '.modal', function () {
 
 
 {{ Form::open(['action' => ['catering\ReservationsController@attachMenu'], 'role' => 'form' , 'id' => 'form']) }}
-{{ Form::hidden('id', $id)  }}
+{{ Form::hidden('id', $id)}}
 <div class='col-md-8 col-md-offset-2'>
 
 <div class="panel panel-default">
@@ -27,7 +27,7 @@ $('body').on('hidden.bs.modal', '.modal', function () {
                             <a data-toggle="modal" href="http://localhost:8000/equip/getOne/{{$items->id}}" data-target="#menuModal">{{$items->model_number}}</a>
 
                         </td>
-                        <td>{{Form::number('quantity[]',0,['class' => 'form-control', 'placeholder' => 'Qty'])}}</td>
+						<td>{{Form::number('quantity[]',0,['class' => 'form-control', 'placeholder' => 'Qty', 'min' => '0'])}}</td>
                     </tr>
 
                 @endforeach
@@ -206,28 +206,28 @@ $('body').on('hidden.bs.modal', '.modal', function () {
 @stop
 
 @section('scripts')
-<SCRIPT TYPE="text/javascript">
+<script type="text/javascript">
     
-    $(document).ready(function(){
-        $('#btn_confirm').click(function(e){
-            e.preventDefault();
-            swal({   title: "Halt!?",  
-             text: "Are you sure you want to proceed to checkout?",  
-              type: "warning",  
-               showCancelButton: true,  
-                confirmButtonColor: "#DD6B55", 
-                  confirmButtonText: "Proceed",   
-                  cancelButtonText: "No", 
-                    closeOnConfirm: false,   closeOnCancel: false }, 
-                    function(isConfirm){  
-                    if (isConfirm) {    
-                        $('#form').submit();
-                    } 
-                    else {
-                         swal("Cancelled", "Roger that! Take your time and pick from our finest selection.", "error");   
-                    } });
-        });
-    });
-</SCRIPT>
+	$(document).ready(function(){
+		$('#btn_confirm').click(function(e){
+			e.preventDefault();
+			swal({   title: "Halt!?",  
+			 text: "Are you sure you want to proceed to checkout?",  
+			  type: "warning",  
+			   showCancelButton: true,  
+				confirmButtonColor: "#DD6B55", 
+				  confirmButtonText: "Proceed",   
+				  cancelButtonText: "No", 
+					closeOnConfirm: false,   closeOnCancel: false }, 
+					function(isConfirm){  
+					if (isConfirm) {    
+						$('#form').submit();
+					} 
+					else {
+						 swal("Cancelled", "Roger that! Take your time and pick from our finest selection.", "error");   
+					} });
+		});
+	});
+</script>
 
 @stop

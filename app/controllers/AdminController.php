@@ -1774,7 +1774,7 @@ $total = 0;
         $model = Input::get('model');
         $invid = Input::get('invId');
         $pricey = Input::get('pricey');
-        foreach ($reservation->menu as $value) {
+        foreach ($reservation->menu() as $value) {
 
             $total_price += $value->price; 
         }

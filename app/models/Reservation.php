@@ -21,10 +21,10 @@ class Reservation extends Eloquent{
         return $this->belongsToMany('Menu')->withPivot('day','package');
     }
     public function menu(){
-        return $this->belongsToMany('menu');
+        return $this->belongsToMany('Menu');
     }
     public function item(){
-        return $this->belongsToMany('item');
+        return $this->belongsToMany('Item');
     }
     public function package(){
 
