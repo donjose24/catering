@@ -13,7 +13,7 @@
 {{Form::open(['action' => 'AdminController@generateReport'])}}
 <div class="row">
     <div class="col-lg-7">
-         {{Form::radio('choice', 'weekly');}} Weekly
+		 {{Form::radio('choice', 'weekly',['selected' => 'true']);}} Weekly
 
     </div>
     <div class="col-lg-6">
