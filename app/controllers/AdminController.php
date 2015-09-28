@@ -1649,10 +1649,10 @@ $total = 0;
 
     public function messages()
     {
-        $reservation = Reservation::where('status','=','Payment Pending')->get();
+        $reservation = Reservation::where('status','=','Payment Pending')->orWhere('status','=','Half Paid')->get();
 
          if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
-        return View::make('admin.messages',compact('reservation'));
+       	 return View::make('admin.messages',compact('reservation'));
     }
 
     public function cancellations()

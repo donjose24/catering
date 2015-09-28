@@ -415,7 +415,7 @@ class ReservationsController extends \BaseController {
         );
 
         if($validator->fails()){
-            return Redirect::to('reservation/message/' . $id )->withErrors($validator->messages());
+			return Redirect::action('catering\ReservationsController@index')->withErrors(['notice'=> 'only doc and docx are allowed'])r
         }
         $image = Input::file('image');
         $name = Input::file('image')->getClientOriginalName();
