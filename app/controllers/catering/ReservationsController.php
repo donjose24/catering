@@ -185,6 +185,7 @@ class ReservationsController extends \BaseController {
         $reservation = Session::get('reservation') ? Session::get('reservation') : new Reservation;
         $reservation->fill(Input::all());
         $reservation->status = 'Half Paid';
+		$reservation->or_number = strtoupper(date('M')) . '-' . date('d') . rand(pow(10, 5-1), pow(10, 5)-1);
         //if($reservation->save()){scrap this shit. only save on checkout process  .what if we left the page suddenly, the reservation will be saved with no effing item or fuckages in it.
         $id = Input::get('id');
         Session::put('reservation' , $reservation); //Just store the reservation to session. we'll save it later
@@ -415,7 +416,7 @@ class ReservationsController extends \BaseController {
         );
 
         if($validator->fails()){
-			return Redirect::action('catering\ReservationsController@index')->withErrors(['notice'=> 'only doc and docx are allowed'])r
+			return Redirect::action('catering\ReservationsController@index')->withErrors(['notice'=> 'only doc and docx are allowed']);
         }
         $image = Input::file('image');
         $name = Input::file('image')->getClientOriginalName();
@@ -555,6 +556,12 @@ class ReservationsController extends \BaseController {
         $fpdf->Cell(40,7,round($reservation->net_total,2),0);
         $fpdf->Ln();
         $fpdf->Ln();$fpdf->Ln();
+		
+		$fpdf->SetFont('Arial','B',13);
+        $fpdf->Cell(40,7,'OR Number:');
+        $fpdf->SetFont('Arial','',13);
+        $fpdf->Cell(40,7,"$reservation->or_number",0);
+        $fpdf->Ln();
 
 
         $fpdf->SetFont('Arial','B',13);

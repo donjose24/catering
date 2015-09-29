@@ -12,7 +12,7 @@
 		<tr>
 			
 			<th>Reservation ID</th>
-			<th>Image</th>
+			<th>File</th>
 			<th>Action</th>
 		</tr>
 		</thead>
@@ -24,8 +24,7 @@
                <tr>
 			<td>{{$reservations->id}}</td>
             <td> 
-                 <img src="{{ asset('cancellation/'.$reservations->id.'.jpg')}}" width="600" height="500"  >
-           
+				<a href="{{ asset('cancellation/'.$reservations->id.'.docx')}}" target="_blank">Download</a>
 			<td>
 			    <a href="{{action('AdminController@cancelReservation', $reservations->id)}}" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-thumbs-down"></span> Decline</a><br>
 			</td>

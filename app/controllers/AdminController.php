@@ -55,10 +55,14 @@ class AdminController extends \BaseController {
         $fpdf->SetFont('Arial','',13);
         $fpdf->Cell(40,7,"$date3",0,1);
         $fpdf->SetFont('Arial','B',13);
+        $fpdf->Cell(40,7,'OR Number:');
+        $fpdf->SetFont('Arial','',13);
+        $fpdf->Cell(40,7,"$reservation->or_number",0);
+		$fpdf->SetFont('Arial','',13);
         $fpdf->Cell(40,7,'Full Name:');
         $fpdf->SetFont('Arial','',13);
         $fpdf->Cell(40,7,"$reservation->first_name $reservation->last_name",0);
-        $fpdf->SetFont('Arial','B',13);
+		$fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'               Contact:');
         $fpdf->SetFont('Arial','',13);
         $fpdf->Cell(40,7,"$reservation->contact",0,1);
@@ -296,7 +300,7 @@ class AdminController extends \BaseController {
                 $fpdf->SetFont('Arial','B',13);
                 $fpdf->Cell(40,7,'Balance:');
                 $fpdf->SetFont('Arial','',13);
-                $fpdf->Cell(40,7,($reservation->net_total) - round(( $reservation->middle_name),2),0,1);
+                $fpdf->Cell(40,7,0,0,1);
             }else
             {
                 $fpdf->SetFont('Arial','B',13);
@@ -385,7 +389,11 @@ class AdminController extends \BaseController {
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'Full Name:');
         $fpdf->SetFont('Arial','',13);
-        $fpdf->Cell(40,7,"$reservation->first_name $reservation->last_name",0);
+       	$fpdf->Cell(40,7,'OR Number:');
+        $fpdf->SetFont('Arial','',13);
+        $fpdf->Cell(40,7,"$reservation->or_number",0);
+		$fpdf->SetFont('Arial','',13);
+		$fpdf->Cell(40,7,"$reservation->first_name $reservation->last_name",0);
         $fpdf->SetFont('Arial','B',13);
         $fpdf->Cell(40,7,'               Contact:');
         $fpdf->SetFont('Arial','',13);
