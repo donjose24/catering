@@ -584,12 +584,11 @@ class ReservationsController extends \BaseController {
             $fpdf->Cell(40,7,'Balance:');
             $fpdf->SetFont('Arial','',13);
             $fpdf->Cell(40,7,round(($reservation->net_total/2),2),0,1);
-        }
-        else{
+        } else {
             $fpdf->SetFont('Arial','B',13);
             $fpdf->Cell(40,7,'Amount Paid:');
             $fpdf->SetFont('Arial','',13);
-            $fpdf->Cell(40,7,round(($reservation->net_total),2),0,1);
+            $fpdf->Cell(40,7,round((0),2),0,1);
 
         }
 
