@@ -20,7 +20,7 @@
 		@foreach($reservation as $reservations)
 		    
 		
-            @if (File::exists(public_path('cancellation/'.$reservations->id.'.jpg')))
+            @if (File::exists(public_path('cancellation/'.$reservations->id.'.docx')))
                <tr>
 			<td>{{$reservations->id}}</td>
             <td> 
@@ -28,7 +28,15 @@
 			<td>
 			    <a href="{{action('AdminController@cancelReservation', $reservations->id)}}" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-thumbs-down"></span> Decline</a><br>
 			</td>
-			 @endif
+			@elseif (File::exists(public_path('cancellation/'.$reservations->id.'.doc')))
+				<tr>
+			<td>{{$reservations->id}}</td>
+            <td> 
+				<a href="{{ asset('cancellation/'.$reservations->id.'.doc')}}" target="_blank">Download</a>
+			<td>
+			    <a href="{{action('AdminController@cancelReservation', $reservations->id)}}" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-thumbs-down"></span> Decline</a><br>
+			</td>
+			@endif
 			</tr>
 		
 		@endforeach
