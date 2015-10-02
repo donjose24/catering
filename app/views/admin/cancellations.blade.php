@@ -13,6 +13,7 @@
 			
 			<th>Reservation ID</th>
 			<th>File</th>
+			<th>Status</th>
 			<th>Action</th>
 		</tr>
 		</thead>
@@ -28,6 +29,7 @@
 			<td>
 			    <a href="{{action('AdminController@cancelReservation', $reservations->id)}}" class="btn btn-danger btn-sm" ><span class="glyphicon glyphicon-thumbs-down"></span> Decline</a><br>
 			</td>
+			<td>{{$reservation->status}}</td>
 			@elseif (File::exists(public_path('cancellation/'.$reservations->id.'.doc')))
 				<tr>
 			<td>{{$reservations->id}}</td>
