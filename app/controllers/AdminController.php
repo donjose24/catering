@@ -1703,10 +1703,10 @@ $total = 0;
         $reservation = Reservation::find($id);
 
          if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
-        $reservation->delete();
-        /*$reservation->status = 'Cancelled';
+        //$reservation->delete();
+        $reservation->status = 'Cancelled'
         $reservation->save();
-        */
+        
         return Redirect::back();
     }
 

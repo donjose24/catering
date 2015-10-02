@@ -429,6 +429,7 @@ class ReservationsController extends \BaseController {
         $message = new Message;
         $message->reservation_id = $id;
         $message->image = $id . $ext;
+		$message->status = 'pending';
         $message->save();
 
         Input::file('image')->move(public_path('cancellation/'), $id.$ext);
