@@ -1704,7 +1704,7 @@ $total = 0;
 
          if(!$reservation)return Redirect::back()->withErrors('Could not find reservation');
         //$reservation->delete();
-        $reservation->status = 'Cancelled'
+        $reservation->status = 'Cancelled';
         $reservation->save();
         
         return Redirect::back();

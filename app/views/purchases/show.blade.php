@@ -252,13 +252,7 @@
         <div class="row">
           <div class="col-md-6">
           {{ Form::label('si_number', 'SI#', ['class' => 'control-label']) }}
-          {{ Form::text('si_number', null, ['class' => 'form-control'])  }}
-          </div>
-          <div class="col-md-6">
-            <br />
-            <button type="submit" class="btn btn-success">
-              <i class="fa fa-save"></i> Create SI
-            </button>
+		  {{ Form::text('so_number', str_pad($purchase->id,5,'0', STR_PAD_LEFT ) , ['class' => 'form-control', 'readonly' => 'true'])  }}
           </div>
         </div>
       {{ Form::close() }}

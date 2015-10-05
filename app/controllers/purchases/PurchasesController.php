@@ -60,7 +60,6 @@ class PurchasesController extends \BaseController {
 	{
         $purchase = new Purchase;
 		$purchase->fill(Input::all());
-        $purchase->po_number = $poid;
         $purchase->date;
         if ($purchase->id == null)
         {

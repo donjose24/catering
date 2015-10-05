@@ -9,8 +9,7 @@
       <div class="row"><small>{{ $quotation->date }}</small></div>
       <div class="row">
         {{ Form::open(['method' => 'delete',  'action' => ['Sales\QuotationsController@destroy', 'quotation' => $quotation->id]]) }}
-          <div class="btn-group">
-           <a href="{{ action('Sales\QuotationsController@edit', ['quotation' => $quotation->id]) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
+          <div class="btn-group"> <a href="{{ action('Sales\QuotationsController@edit', ['quotation' => $quotation->id]) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
           </div>
           <div class="btn-group">
             <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</button>
@@ -258,13 +257,7 @@
         <div class="row">
           <div class="col-md-6">
           {{ Form::label('so_number', 'SO#', ['class' => 'control-label']) }}
-          {{ Form::text('so_number', null, ['class' => 'form-control'])  }}
-          </div>
-          <div class="col-md-6">
-            <br />
-            <button type="submit" class="btn btn-success">
-              <i class="fa fa-save"></i> Create RO
-            </button>
+		  {{ Form::text('so_number', str_pad($quotation->id,5,'0', STR_PAD_LEFT ) , ['class' => 'form-control', 'readonly' => 'true'])  }}
           </div>
         </div>
       {{ Form::close() }}
