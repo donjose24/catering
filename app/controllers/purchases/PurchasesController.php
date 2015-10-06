@@ -61,29 +61,16 @@ class PurchasesController extends \BaseController {
         $purchase = new Purchase;
 		$purchase->fill(Input::all());
         $purchase->date;
-        if ($purchase->id == null)
-        {
-            // TODO : CHANGE
-            $purchase->prepared_by = 'test';
-        }
-
-        if ($purchase->save()) {
-
-            $i = Purchase::find($purchase->id);
-         	$poid = substr(Input::get('supplier_id'),0,3) . '-' . date('Y') . '-' . rand(10000, 99999);
-			$i->po_number = $poid;
-			$i->si_number = $poid . '-' . $purchase->id . '-'  . rand(10000, 99999);
-            $i->save();
-
-            return Redirect::action('Purchases\PurchasesController@show', $purchase->id)
+    	$purchase->prepared_by = 'test';
+        $poid = substr(Input::get('supplier_id'),0,3) . '-' . date('Y') . '-' . rand(10000, 99999);
+		$purchase->po_number = $poid;
+		$purchase->si_number = $poid . '-' . $purchase->id . '-'  . rand(10000, 99999);
+        $purchase->save();
+		
+		return Redirect::action('Purchases\PurchasesController@show', $purchase->id)
                 ->with('message', 'Purchase Order '.$purchase->id.' Created!');
-        } else {
-            return Redirect::action('Purchases\PurchasesController@create')
-                ->withInput()
-                ->withErrors($purchase->errors());
-        }
+       
 	}
-
 
 	public function show($purchase)
 	{

@@ -2,6 +2,7 @@
 
 @section ('body')
   <h1 class="page-header"><i class="fa fa-clients"></i> Items</h1>
+  @include('errors')
   <table class="table table-responsive table-striped">
     <thead>
       <tr>

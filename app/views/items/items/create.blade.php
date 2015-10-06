@@ -3,6 +3,8 @@
 @section ('body')
   <a href="{{ action('Items\ItemsController@index') }}"><i class="fa fa-arrow-left"></i> Back to Items</a>
 
+  @include('errors')
+
   <h1 class="page-header"><i class="fa fa-user"></i> Add Item Record</h1>
 
 

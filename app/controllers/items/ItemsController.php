@@ -35,11 +35,13 @@ class ItemsController extends BaseController
         $validator = Validator::make(Input::all(),
             array(
                 'image'     => 'required|image',
+				'average_price' => 'required|numeric',
+				'alert_quantity' => 'required|numeric'
             )
         );
 
         if($validator->fails()){
-            return Redirect::back()->withErrors($validator->messages());
+            return Redirect::back()->withErrors($validator);
         }
 
         $image = Input::file('image');
@@ -48,7 +50,7 @@ class ItemsController extends BaseController
         $item = new Item;
         $item->fill(Input::all());
         $item->image = $name;
-
+		
         if ($item->save()) {
             if(file_exists(public_path('equipments/'.$name))){
 
@@ -62,7 +64,7 @@ class ItemsController extends BaseController
             //dd($item);
             return Redirect::action('Items\ItemsController@create')
                 ->withInput()
-                ->withErrors($item->errors());
+                ->withErrors($validator);
         }
     }
 
