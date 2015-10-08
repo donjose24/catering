@@ -297,6 +297,11 @@ class ReservationsController extends \BaseController {
     public function attachPayment(){
             $reservation = Reservation::find(Input::get('id'));
             $reservation->fill(Input::all());
+            if(Input::get('payment_mode') == "Full Payment") {
+                $reservation->amount_paid = $reservation->net_total;
+            } else {
+                $reservation->amount_paid = $reservation->net_total / 2;
+            }
             $reservation->save();
             $date1 = new DateTime($reservation->reservation_start);
             $date2 = new DateTime($reservation->reservation_end);

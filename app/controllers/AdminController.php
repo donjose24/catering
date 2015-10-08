@@ -283,18 +283,18 @@ class AdminController extends \BaseController {
             $fpdf->SetFont('Arial','B',13);
             $fpdf->Cell(40,7,'Amount Paid:');
             $fpdf->SetFont('Arial','',13);
-            $fpdf->Cell(40,7,round((($reservation->net_total)/2 - $grand )+ $reservation->middle_name,2),0,1);
+            $fpdf->Cell(40,7,round($reservation->amount_paid,2),0,1);
 
             $fpdf->SetFont('Arial','B',13);
             $fpdf->Cell(40,7,' Balance:');
             $fpdf->SetFont('Arial','',13);
-            $fpdf->Cell(40,7,round((($reservation->net_total)/2 + $grand ) - $reservation->middle_name,2),0,1);
+            $fpdf->Cell(40,7,round($reservation->net_total - $reservation->amount_paid,2),0,1);
         }
         else{
             $fpdf->SetFont('Arial','B',13);
             $fpdf->Cell(40,7,'Amount Paid:');
             $fpdf->SetFont('Arial','',13);
-            $fpdf->Cell(40,7,round(($reservation->net_total+ $reservation->middle_name),2),0,1);
+            $fpdf->Cell(40,7,round($reservation->net_total,2),0,1);
             if(round(($reservation->middle_name),2) < ($reservation->net_total))
             {
                 $fpdf->SetFont('Arial','B',13);
@@ -306,7 +306,7 @@ class AdminController extends \BaseController {
                 $fpdf->SetFont('Arial','B',13);
                 $fpdf->Cell(40,7,'Change:');
                 $fpdf->SetFont('Arial','',13);
-                $fpdf->Cell(40,7, round(($reservation->middle_name)-($reservation->net_total) ,2),0,1);
+                $fpdf->Cell(40,7,round($reservation->net_total - $reservation->amount_paid,2),0,1);
             }
 
         }

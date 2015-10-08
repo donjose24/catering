@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('body')
-{{ Form::open(['action' => 'Catering\ReservationsController@contactStore', 'role' => 'form']) }}
+{{ Form::open(['action' => 'catering\ReservationsController@contactStore', 'role' => 'form']) }}
 <div class="service-wrapper">
 	<fieldset>
         <legend>
