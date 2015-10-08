@@ -408,7 +408,7 @@ class ReservationsController extends \BaseController {
 
         Input::file('image')->move(public_path('bank/'), $id.'.jpg');
 
-        return Redirect::action('catering\ReservationsController@index')->with('flash_message', ['notice' => 'Your request has been updated, please search it again to view it.']);
+        return Redirect::action('catering\ReservationsController@index')->with('flash_message', 'Your request has been updated, please search it again to view it.');
     }
 
     public function attachMessageCancellation($id)
@@ -439,7 +439,7 @@ class ReservationsController extends \BaseController {
 
         Input::file('image')->move(public_path('cancellation/'), $id.$ext);
 
-        return Redirect::action('catering\ReservationsController@index')->withErrors(['notice'=> 'Your request has been updated, please search it again to view it.']);
+        return Redirect::action('catering\ReservationsController@index')->with('flash_message', 'Your request has been updated, please search it again to view it.');
     }
 
     public function deletePicture($id)
@@ -447,8 +447,8 @@ class ReservationsController extends \BaseController {
         File::delete(public_path('bank/'.$id.'.jpg'));
         $message = Message::where('reservation_id','=',$id);
         $message->delete();
-        return Redirect::action('catering\ReservationsController@index')->withErrors(['notice'=>'Your request has been updated, please search it again to view it.']);
 
+        return Redirect::action('catering\ReservationsController@index')->with('flash_message', 'Your request has been updated, please search it again to view it.');
     }
 
     public function changeStatus()
