@@ -408,7 +408,7 @@ class ReservationsController extends \BaseController {
 
         Input::file('image')->move(public_path('bank/'), $id.'.jpg');
 
-        return Redirect::action('catering\ReservationsController@index')->withErrors(['notice' => 'Your request has been updated, please search it again to view it.']);
+        return Redirect::action('catering\ReservationsController@index')->with('flash_message', ['notice' => 'Your request has been updated, please search it again to view it.']);
     }
 
     public function attachMessageCancellation($id)
